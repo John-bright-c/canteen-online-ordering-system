@@ -26,6 +26,7 @@
 <div class="container">
 
     <div class="heading">
+        <div>Date</div>
         <div>Token</div>
         <div>Product</div>
         <div>Qty</div>
@@ -35,6 +36,7 @@
 
     {% for order in orders %}
     <div class="order-row">
+        <div>{{ order.order_date }}</div>
         <div>{{ order.token_no }}</div>
         <div>{{ order.product_name }}</div>
         <div>{{ order.quantity }}</div>

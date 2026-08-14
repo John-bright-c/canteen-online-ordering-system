@@ -78,7 +78,7 @@ h1{
 
 .heading,.order-row{
     display: grid;
-    grid-template-columns: 1fr 3fr 1fr 1fr 1.5fr;
+    grid-template-columns: 1fr 1fr 2fr 1fr 1fr 1.5fr;
     align-items: center;
     text-align: center;
     padding: 15px;
