@@ -4,7 +4,7 @@
         <title> Menu page </title>
     </head>
     <link rel="stylesheet" href="{{url_for('static',filename='admin_dashhboard.css')}}">
-    <link rel="stylesheet" href="admin_dashhboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <body>
     
     <header>
@@ -19,7 +19,11 @@
     <a href="/edit_menu">Edit Menu</a>
     </nav>
     </header>
-<h1><b>Dashboard</b></h1>
+
+<div class="greetings">    
+<h1><b>Hello, Admin👋</b></h1>
+<p>Here's what happening in your canteen.</p>
+</div>
 
 <div class="head">
 
@@ -44,11 +48,11 @@
 </div>
 </div>
 
+<div class="container2">
 <p class="orders"> Recent Orders :</p>
 
 
 <div class="container">
-
     <div class="heading">
         <div>Token</div>
         <div>Product</div>
@@ -66,28 +70,48 @@
         <div class="status">{{ order.order_status }}</div>
     </div>
     {% endfor %}
+</div>
+</div>
 
+<div class="container1">
 
+<div class="popular">
+    <h2>Top selling Items</h2>
+</div>
+
+<div class="container3">
+    <h2>Quick Action:</h2>
+<div class="quick">
+    <div class="add_product">
+        <a href="/admin_add_product">
+            <i class="fa-solid fa-plus"></i>
+            <p>Add Product</p> 
+        </a>
+    </div>
+
+    <div class="add_product">
+        <a href="/manage_orders">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <p>Manage Orders</p> 
+        </a>
+    </div>
+
+     <div class="add_product">
+        <a href="/manage_orders">
+            <i class="fa-solid fa-users"></i>
+            <p>Customers</p> 
+        </a>
+    </div>
+
+     <div class="add_product">
+        <a href="/manage_orders">
+            <i class="fa-solid fa-chart-column"></i>
+            <p>View Reports</p> 
+        </a>
+    </div>
+</div>
+</div>
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <footer>Copyright © CanteenBite</footer>
+<footer>Copyright © CanteenBite</footer>

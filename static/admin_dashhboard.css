@@ -20,7 +20,6 @@ h1{
 
 body{
     height: auto;
-    min-height: 100vh;
     margin:0;
     padding: 0;
     text-align: center;
@@ -155,9 +154,9 @@ footer{
     
 }
 
-.orders {
+.orders{
+    margin-top: 20px;
     color: #2d2d2d;
-    margin-bottom: -40px;
     font-size: 36px;
     font-weight: bolder;
     text-align: left;
@@ -172,4 +171,81 @@ footer{
 .status{
     color:green;
     font-weight: bold;
+}
+.container2{
+    background: white;
+    border-radius: 15px;
+    margin: 10px;
+    height: 620px;
+
+}
+
+.greetings{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    color: black;
+}
+.greetings p{
+    margin-left: 30px;
+}
+
+.popular{
+    background: white;
+    width: 500px;
+    height: 350px;
+    border-radius: 12px;
+}
+.quick{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 30px;
+    row-gap: 60px;
+    background: white;
+    width: 500px;
+    border-radius: 12px;
+}
+.container1{
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-around;
+    gap: 170px;
+    margin-bottom: 40px;
+}
+.container3{
+    background: white;
+    width: 500px;
+    height: 350px;
+    border-radius: 12px;
+}
+.container3 h2{
+    margin-top: 10px;
+    font-size: 28px;
+    text-align: left;
+    margin-left: 20px;
+    margin-bottom: 30px;
+}
+
+.add_product i{
+    color: #e68900;
+    font-size: 25px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+.add_product i:hover{
+    transform: scale(1.5);
+}
+.add_product p,.add_product a{
+    color: #2d2d2d;
+    margin-top: 10px;
+    font-size: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+.add_product p:hover{
+    transform: scale(1.05);
+    color: #e68900;
 }
