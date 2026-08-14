@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from werkzeug.utils import secure_filename
 import mysql.connector
 from random import randint
-
+from decimal import Decimal
 from werkzeug.security import generate_password_hash,check_password_hash
 
 load_dotenv()
