@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+}
+
+h1 {
+    color: white;
+    font-weight: bolder;
+    margin-top: 40px;
+    margin-bottom: -10px;
+    text-align: left;
+    margin-left: 30px;
+}
+
+.cb {
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.cb:hover {
+    color: #e68900;
+}
+
+body {
+    height: auto;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background: linear-gradient(135deg, #e68900 50%, #2d2d2d 50%);
+}
+
+header {
+    background: #2d2d2d;
+    color: white;
+    display: flex;
+    height: 70px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+nav a {
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    margin-left: 80px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: orange;
+}
+
+.container {
+    margin-left: 25px;
+    width: 95%;
+    background: white;
+    height: 500px;
+    overflow-y: scroll;
+    margin-bottom: 20px;
+    border-radius: 20px;
+}
+
+.row-head,.row {
+    display: grid;
+    grid-template-columns: 1.5fr 1.5fr 1.5fr 1fr 1fr ;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.submit {
+    background: #e68800;
+    margin-right: -1050px;
+    margin-top: -30px;
+    width: 120px;
+    height: 40px;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.submit:hover {
+    transform: scale(1.05);
+    background: #e68900;
+}
+
+.edit,.delete{
+    height: 35px;
+    width: 35px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    color: #2d2d2d;
+}
+
+.imgg{
+    border-radius: 8px;
+    border: none;
+}
+footer {
+    size: 8px;
+    width: 100%;
+    height: 50px;
+    background-color: #2d2d2d;
+    color: white;
+}

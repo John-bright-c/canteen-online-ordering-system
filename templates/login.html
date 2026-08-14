@@ -1,0 +1,27 @@
+<html>
+<head>
+    <title>Log into CanteenBite</title>
+</head>
+<link rel="stylesheet" href="{{url_for('static',filename='login.css')}}">
+<body>
+<header>CanteenBites</header>
+<img src="{{url_for('static',filename='images/CB Logo.png') }}" alt="logo" class="logo">
+
+<div class="container">
+    <form action="/login" method="post">
+<h1>Log into CanteenBite</h1>
+<p>Full Name</p>
+<input type="text" placeholder="John Bright C" name="full_name" required>
+<p>Password</p>
+<input type="password" name="password" required><br><br><br>
+
+<button type="submit" class="login">Login</button>
+
+<p>Don't Have an Account?</p>
+<a href = "/register">Register</a>
+<div class="copyright">
+    Copyright © CanteenBite
+</div>
+</form>
+</div>
+</body>

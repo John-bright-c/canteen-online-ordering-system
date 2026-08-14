@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>Add Product</title>
+    </head>
+    <body>
+        <h1>Add Product</h1>
+        <form action="/admin_add_product" method="post" enctype="multipart/form-data" >
+            <label>Product Name</label>
+            <input type="text" name="name" required><br><br>
+
+            <label>Price</label>
+            <input type="number" name="price" required><br><br>
+
+            <label>Category</label>
+            <select name="category" required>
+                <option value="">----Select Category----</option>
+                <option value="Snacks">Snacks</option>
+                <option value="Food">Food</option>
+                <option value="Drinks">Drinks</option> 
+        </select><br><br>
+        <label>Image</label>
+        <input type="file" name="image" accept="image/*" required><br><br>
+
+        <button type="submit">Add Product</button>
+
+        </form>
+    </body>
+</html>

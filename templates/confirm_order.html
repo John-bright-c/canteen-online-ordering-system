@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Menu page </title>
+    </head>
+    <link rel="stylesheet" href="{{url_for('static',filename='confirm_order.css')}}">
+    <link rel="stylesheet" href="checkout.css">
+<body>
+    
+    <header>
+    <div class="logo">  
+    <img src="{{url_for('static', filename='images/CB logo.png')}}" width="50">
+    <a href="/" class="cb"><p>CanteenBite</p>
+    </a>
+    </div>
+    <nav>
+    <a href="/">Home</a>
+    <a href="/menu" class="menu">Menu</a>
+    <a href="/cart">Cart</a>
+    <a href="/orders">Orders</a>
+    </nav>
+    </header>
+
+<div class="container">
+
+    <div class="success">
+        ✅
+        <h1>Order Confirmed! 🎉</h1>
+        <p>Your order has been placed successfully.</p>
+    </div>
+
+    <div class="token-box">
+
+        <h2>Your Token Number</h2>
+
+        <div class="token">
+            {{token}}
+        </div>
+
+        <p class="status">
+            Status :
+            <span>Preparing....</span>
+        </p>
+
+        <p>Estimated Time : <b>10-15 Minutes</b></p>
+
+        <p>
+            Please show this token at the counter while collecting your order.
+        </p>
+
+    </div>
+
+    <div class="buttons">
+
+        <a href="/menu">
+            <button class="menu-btn">
+                Order Again
+            </button>
+        </a>
+
+        <a href="/">
+            <button class="home-btn">
+                Back to Home
+            </button>
+        </a>
+
+    </div>
+
+</div>
+
+<footer>
+Copyright © CanteenBite
+</footer>
+
+</body>
+</html>

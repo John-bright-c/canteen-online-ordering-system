@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Edit Product</title>
+    </head>
+
+    <body>
+        <h1>Edit Product</h1>
+        <form method="POST">
+            <label> Product Name </label>
+            <input type="text" name="name" value="{{ food.name }}"><br><br>
+
+            <label> Price </label>
+            <input type="number" name="price" value="{{ food.price }}"><br><br>
+
+            <label> Category </label>
+            <input type="text" name="category" value="{{ food.category }}"><br><br>
+
+            <label> Image </label>
+            <input type="text" name="image" value="{{ food.image }}"><br><br>
+
+            <button type="submit">Save Changes</button>
+        </form>
+    </body>
+</html>

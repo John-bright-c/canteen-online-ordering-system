@@ -1,0 +1,175 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
+}
+
+h1{
+    text-align: left;
+    margin-left: 30px;
+}
+.cb{
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+}
+.cb:hover{
+    color: #e68900;
+}
+
+body{
+    height: auto;
+    min-height: 100vh;
+    margin:0;
+    padding: 0;
+    text-align: center;
+    background: linear-gradient(135deg ,#e68900 50%,#2d2d2d 50%);
+}
+
+header{
+    background:#2d2d2d;
+    color:white;
+    display:flex;
+    height: 70px;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 50px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+nav a{
+    text-align: center;
+    color:white;
+    text-decoration:none;
+    margin-left:80px;
+    font-weight:bold;
+}
+
+nav a:hover{
+    color:orange;
+}
+
+.container{
+    justify-content: space-between;
+    width:1200px;
+    height:500px;
+    margin:50px auto;
+    background:white;
+    border-radius:15px;
+    padding:40px;
+    text-align:center;overflow-y: scroll;
+    box-shadow:0 10px 20px rgba(0,0,0,.3);
+}
+
+footer{
+    size: 8px;
+    width:100%;
+    height: 50px;
+    background-color: #2d2d2d;
+    color: white;
+}
+
+.container p{
+    text-align: left;
+}
+
+.heading,.order-row{
+    display: grid;
+    grid-template-columns: 1fr 3fr 1.5fr 1fr 2fr;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+}
+
+.heading{
+    font-weight: bold;
+    background: #f5f5f5;
+    border-radius: 10px;
+}
+.order-row{
+    border-bottom: 1px solid #ddd;
+}
+
+.order-row:last-child{
+    border-bottom: none;
+}
+
+.head{
+    display: flex;
+}
+
+.total-orders p, .pending p, .ready_orders p, .total-revenue p{
+    font-weight: bold;
+    text-align: left;
+    margin-top: 60px;
+    color: #2d2d2d;
+}
+
+
+.total-orders{
+    font-weight: bolder;
+    border-radius: 12px;
+    background:white;
+    height: 200px;
+    width: 250px;
+    padding: 40px;
+    margin: 50px auto;
+    
+}
+
+.pending{
+    font-weight: bolder;
+    border-radius: 12px;
+    background:white;
+    height: 200px;
+    width: 250px;
+    padding: 40px;
+    margin: 50px auto;
+    
+}
+
+.ready_orders{
+    font-weight: bolder;
+    border-radius: 12px;
+    background:white;
+    height: 200px;
+    width: 250px;
+    padding: 40px;
+    margin: 50px auto;
+}
+
+.total-revenue{
+    font-weight: bolder;
+    border-radius: 12px;
+    background:white;
+    height: 200px;
+    width: 250px;
+    padding: 40px;
+    margin: 50px auto;
+    
+}
+
+.orders {
+    color: #2d2d2d;
+    margin-bottom: -40px;
+    font-size: 36px;
+    font-weight: bolder;
+    text-align: left;
+    margin-left: 40px;
+}
+
+.no{
+    font-size: 45px;
+    margin-right: 90px;
+}
+
+.status{
+    color:green;
+    font-weight: bold;
+}

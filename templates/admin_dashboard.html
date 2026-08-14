@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Menu page </title>
+    </head>
+    <link rel="stylesheet" href="{{url_for('static',filename='admin_dashhboard.css')}}">
+    <link rel="stylesheet" href="admin_dashhboard.css">
+<body>
+    
+    <header>
+    <div class="logo">  
+    <img src="{{url_for('static', filename='images/CB logo.png')}}" width="50">
+    <a href="/admin_dashboard" class="cb"><p>CanteenBite</p>
+    </a>
+    </div>
+    <nav>
+    <a href="/admin_dashboard">Home</a>
+    <a href="/manage_orders" class="menu">Manage</a>
+    <a href="/edit_menu">Edit Menu</a>
+    </nav>
+    </header>
+<h1><b>Dashboard</b></h1>
+
+<div class="head">
+
+    <div class="total-orders">
+        <span class="no">{{ total_orders.total_orders }} </span>
+    <p>Total orders</p>
+</div>
+
+<div class="pending">
+  <span class="no"> {{ pending_orders.pending_orders }} </span>
+    <p>Pending orders</p>
+</div>
+
+<div class="ready_orders">
+   <span class="no"> {{ ready_orders.ready_orders }} </span>
+    <p>Ready orders</p>
+</div>
+
+<div class="total-revenue">
+   <span class="no"> {{ revenue.revenue }} </span>    
+    <p>Total Revenue</p>
+</div>
+</div>
+
+<p class="orders"> Recent Orders :</p>
+
+
+<div class="container">
+
+    <div class="heading">
+        <div>Token</div>
+        <div>Product</div>
+        <div>Qty</div>
+        <div>Total</div>
+        <div>Status</div>
+    </div>
+
+    {% for order in orders %}
+    <div class="order-row">
+        <div>{{ order.token_no }}</div>
+        <div>{{ order.product_name }}</div>
+        <div>{{ order.quantity }}</div>
+        <div>₹{{ order.total }}</div>
+        <div class="status">{{ order.order_status }}</div>
+    </div>
+    {% endfor %}
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <footer>Copyright © CanteenBite</footer>

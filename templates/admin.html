@@ -1,0 +1,29 @@
+<html>
+<head>
+    <title>Log into CanteenBite</title>
+</head>
+<link rel="stylesheet" href="{{url_for('static',filename='admin.css')}}">
+<link rel="stylesheet" href="admin.css">
+<body>
+<header>CanteenBites</header>
+<img src="{{url_for('static',filename='images/CB Logo.png') }}" alt="logo" class="logo">
+
+<div class="container">
+<h1>Admin Verify</h1>
+
+<form action="/admin" method="POST">
+<p>User Name</p>
+<input type="text" name="username" placeholder="John Bright C" required>
+<p>Password</p>
+<input type="password" name="password" placeholder="password" required><br><br><br>
+
+    <button type="submit" class="login">Login</button>
+</form> 
+
+<p>Enter the valid password</p>
+only for admin
+<div class="copyright">
+    Copyright © CanteenBite
+</div>
+</div>
+</body>

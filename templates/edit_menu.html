@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Menu page </title>
+    </head>
+    <link rel="stylesheet" href="{{url_for('static',filename='edit_menu.css')}}">
+    <link rel="stylesheet" href="edit_menu.css">
+<body>
+    
+    <header>
+    <div class="logo"> 
+    <img src="{{url_for('static', filename='images/CB logo.png')}}" width="50">
+    <a href="/" class="cb"><p>CanteenBite</p>
+    </a>
+    </div>
+    <nav>
+    <a href="/admin_dashboard">Home</a>
+    <a href="/manage_orders" class="menu">Manage</a>
+    <a href="/edit_menu">Edit Menu</a>
+    <a href="/orders">Orders</a>
+    </nav>
+    </header>
+
+<h1> Manage Menu </h1>
+<a href=" {{ url_for('admin_add_product') }}"> 
+<button type="submit" class="submit">+ Add New Item</button>
+</a><br><br>
+
+<div class="container">
+    <div class="row-head">
+    <div><p>Image</p></div>
+    <div><p>Food Items</p></div>
+    <div><p>Category</p></div>
+    <div><p>Price</p></div>
+    <div><p>Actions</p></div>
+    </div>
+
+    {% for food in foods %}
+    <div class="row">
+        <span> <img src="{{ url_for('static',filename='images/'+food.image) }}" alt="no image" width="60" height="60" class="imgg"></span>
+        <span> {{ food.name }} </span>
+        <span> {{ food.category }} </span>
+        <span> {{ food.price }} </span>
+        
+        <div>
+        <a href= "{{ url_for( 'edit', id=food.id)}}">
+        <button class="edit">✏️</button>
+        </a>
+    
+
+        <a href= "{{url_for ( 'remove_product' , id =food.id)}}">
+        <button class="delete">🗑️</button>
+        </a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+<footer><p>Copyright © CanteenBite</p></footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
