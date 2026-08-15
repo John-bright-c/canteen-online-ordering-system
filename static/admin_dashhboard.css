@@ -19,11 +19,12 @@ h1{
 }
 
 body{
+    min-height: 100vh;
     height: auto;
     margin:0;
     padding: 0;
     text-align: center;
-    background: linear-gradient(135deg ,#e68900 50%,#2d2d2d 50%);
+    background: linear-gradient(130deg ,#e68900 50%,#2d2d2d 50%);
 }
 
 header{
