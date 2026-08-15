@@ -80,7 +80,7 @@ footer{
 
 .heading,.order-row{
     display: grid;
-    grid-template-columns: 1fr 1fr 3fr 1.5fr 1fr 2fr;
+    grid-template-columns: 1fr 1.5fr 1fr 3fr 1.5fr 1fr 2fr;
     align-items: center;
     text-align: center;
     padding: 15px;
@@ -253,9 +253,17 @@ footer{
     border: #e68900 solid 2px;
     padding: 8px;
     border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+.add_product button:hover{
+    transform: scale(1.05);
+    background: #e68900;
+
 }
 
 .day{
+    background: white;
     border: #2d2d2d 2px solid;
     font-weight: bold;
     text-align: center;

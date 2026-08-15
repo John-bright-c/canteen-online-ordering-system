@@ -205,7 +205,7 @@ def orders():
     if "user" not in session:
         return redirect("/login")
     register_no= session["register_no"]
-    cursor.execute("""select token_no,max(order_date) as order_date,group_concat(concat(quantity, ' ', product_name)
+    cursor.execute("""select token_no,max(order_date) as order_date,date_format(max(order_time),'%h:%i %p') as order_time,group_concat(concat(quantity, ' ', product_name)
     separator ', ') as product_name, sum(quantity) as quantity, round(sum(total) * 1.05, 2)
     as total, max(order_status) as order_status from orders where register_no = %s 
     group by token_no order by max(order_id) desc""",(register_no,))
@@ -229,7 +229,7 @@ def admin():
 
 @app.route("/admin_dashboard")
 def admin_dashboard():
-    cursor.execute("""select token_no,max(order_date) as order_date, group_concat(concat(quantity, ' ', product_name) separator ', ') as product_name, sum(quantity) as quantity, round(sum(total) * 1.05, 2) as total, max(order_status) as order_status from orders group by token_no order by max(order_id) desc""")
+    cursor.execute("""select token_no,max(order_date) as order_date,date_format(max(order_time),'%h:%i %p') as order_time,group_concat(concat(quantity, ' ', product_name) separator ', ') as product_name, sum(quantity) as quantity, round(sum(total) * 1.05, 2) as total, max(order_status) as order_status from orders group by token_no order by max(order_id) desc""")
     orders = cursor.fetchall()
     today = datetime.now()
     
