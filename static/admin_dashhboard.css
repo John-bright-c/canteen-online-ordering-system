@@ -201,7 +201,7 @@ footer{
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 30px;
-    row-gap: 70px;
+    row-gap: 40px;
     background: white;
     width: 500px;
     border-radius: 12px;
@@ -221,31 +221,47 @@ footer{
 }
 .container3 h2{
     margin-top: 10px;
-    font-size: 28px;
     text-align: left;
     margin-left: 20px;
     margin-bottom: 30px;
 }
 
 .add_product i{
-    color: #e68900;
+    color: white;
     font-size: 25px;
     cursor: pointer;
     transition: 0.3s ease;
 }
-.add_product i:hover{
-    transform: scale(1.5);
-}
+
 .add_product p,.add_product a{
-    color: #2d2d2d;
+    color: white;
     margin-top: 10px;
-    font-size: 20px;
+    font-size: 15px;
     text-decoration: none;
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s ease;
 }
-.add_product p:hover{
-    transform: scale(1.05);
-    color: #e68900;
+
+.add_product button{
+    color: white;
+    font-weight: bold;
+    border: none;
+    height: 80px;
+    width: 150px;
+    background: #e69800;
+    border: #e68900 solid 2px;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.day{
+    border: #2d2d2d 2px solid;
+    font-weight: bold;
+    text-align: center;
+    margin-top: -30px;
+    padding: 8px;
+    width: 250px;
+    margin-left: 970px;
+    border-radius: 6px;
 }

@@ -6,6 +6,7 @@ import mysql.connector
 from random import randint
 from decimal import Decimal
 from werkzeug.security import generate_password_hash,check_password_hash
+from datetime import datetime
 
 load_dotenv()
 app= Flask(__name__)
@@ -230,6 +231,7 @@ def admin():
 def admin_dashboard():
     cursor.execute("""select token_no,max(order_date) as order_date, group_concat(concat(quantity, ' ', product_name) separator ', ') as product_name, sum(quantity) as quantity, round(sum(total) * 1.05, 2) as total, max(order_status) as order_status from orders group by token_no order by max(order_id) desc""")
     orders = cursor.fetchall()
+    today = datetime.now()
     
     cursor.execute("select count(distinct token_no) as total_orders from orders")
     total_orders= cursor.fetchone()
@@ -248,7 +250,7 @@ def admin_dashboard():
     ["revenue"] or 0
 
 
-    return render_template("admin_dashboard.html",total_orders=total_orders, pending_orders=pending_orders,ready_orders=ready_orders, revenue=revenue ,orders=orders)
+    return render_template("admin_dashboard.html",day=today.strftime("%A"),date=today.strftime("%d %B %Y"), total_orders=total_orders, pending_orders=pending_orders,ready_orders=ready_orders, revenue=revenue ,orders=orders)
 
 
 @app.route("/update_status",methods=["POST"])

@@ -25,6 +25,11 @@
 <p>Here's what happening in your canteen.</p>
 </div>
 
+<div class="day">
+    📅: {{ day }}, {{ date }}
+
+</div>
+
 <div class="head">
 
     <div class="total-orders">
@@ -86,29 +91,37 @@
 <div class="quick">
     <div class="add_product">
         <a href="/admin_add_product">
+            <button>
             <i class="fa-solid fa-plus"></i>
-            <p>Add Product</p> 
+            <p>Add Product</p>
+            </button> 
         </a>
     </div>
 
     <div class="add_product">
         <a href="/manage_orders">
+            <button>
             <i class="fa-solid fa-bag-shopping"></i>
-            <p>Manage Orders</p> 
+            <p>Manage Orders</p>
+            </button> 
         </a>
     </div>
 
      <div class="add_product">
         <a href="/manage_orders">
+            <button>
             <i class="fa-solid fa-users"></i>
             <p>Customers</p> 
+            </button>
         </a>
     </div>
 
      <div class="add_product">
         <a href="/manage_orders">
+            <button>
             <i class="fa-solid fa-chart-column"></i>
-            <p>View Reports</p> 
+            <p>View Reports</p>
+            </button> 
         </a>
     </div>
 </div>
