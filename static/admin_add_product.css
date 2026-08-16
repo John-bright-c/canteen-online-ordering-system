@@ -14,10 +14,9 @@ h1{
 body{
     min-height: 100vh;
     height: auto;
-    margin:0;
+    margin: 0;
     padding: 0;
-    text-align: center;
-    background: linear-gradient(130deg ,#e68900 50%,#2d2d2d 50%);
+    background: linear-gradient(#ddd);
 }
 
 header{
@@ -50,9 +49,52 @@ nav a:hover{
 
 
 footer{
+    text-align: center;
     size: 8px;
     width:100%;
     height: 50px;
     background-color: #2d2d2d;
     color: white;
 }
+
+.container1{
+    background: white;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    width: 550px;
+    height: 250px;
+}
+.container1 h2{
+    margin-top: -5px;
+    color: #e68900;
+}
+.container2{
+    background: white;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    width: 550px;
+    height: 150px;
+}
+label{
+    font-weight: bold;
+}
+.input{
+    width: 400px;
+    margin-top: 10px;
+    height: 30px;
+    border-radius: 5px;
+    border: 0.5px solid #2d2d2d;
+}
+
+.image{
+    width: 450px;
+    height: 40px;
+}
+.btn{
+    width: 450px;
+    height: 40px;
+    border-radius: 12px;
+}
+
