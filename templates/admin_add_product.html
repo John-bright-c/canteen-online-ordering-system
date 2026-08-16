@@ -2,8 +2,27 @@
     <head>
         <title>Add Product</title>
     </head>
+
+    <link rel="stylesheet" href="{{url_for('static',filename='admin_add_product.css')}}">
+    <link rel="stylesheet" href="admin_add_product.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
     <body>
+    <header>
+    <div class="logo">  
+    <img src="{{url_for('static', filename='images/CB logo.png')}}" width="50">
+    <a href="/admin_dashboard" class="cb"><p>CanteenBite</p>
+    </a>
+    </div>
+    <nav>
+    <a href="/admin_dashboard">Home</a>
+    <a href="/manage_orders" class="menu">Manage</a>
+    <a href="/edit_menu">Edit Menu</a>
+    </nav>
+    </header>
+
         <h1>Add Product</h1>
+        <div class="container1">
         <form action="/admin_add_product" method="post" enctype="multipart/form-data" >
             <label>Product Name</label>
             <input type="text" name="name" required><br><br>
@@ -18,10 +37,14 @@
                 <option value="Food">Food</option>
                 <option value="Drinks">Drinks</option> 
         </select><br><br>
+        </div>
+
+        <div>
         <label>Image</label>
         <input type="file" name="image" accept="image/*" required><br><br>
 
         <button type="submit">Add Product</button>
+        </div>
 
         </form>
     </body>
