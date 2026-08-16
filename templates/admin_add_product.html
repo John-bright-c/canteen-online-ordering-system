@@ -21,9 +21,10 @@
     </nav>
     </header>
 
-        <h1>Add Product</h1>
+        <h1>Add New Product</h1>
         <div class="container1">
-            <h2>Product information</h2>
+            <h2> <i class="fa-solid fa-cube"></i>
+                Product information</h2>
         <form action="/admin_add_product" method="post" enctype="multipart/form-data" >
             <label>Product Name</label><br>
             <input type="text" name="name" placeholder="Enter product name" class="input" required><br><br>
@@ -35,16 +36,16 @@
             <select name="category" class="input" required>
                 <option value="">----Select Category----</option>
                 <option value="Snacks">Snacks</option>
-                <option value="Food">Food</option>
+                <option value="Food">Meals</option>
                 <option value="Drinks">Drinks</option> 
         </select><br><br>
         </div>
 
         <div class="container2">
-        <label>Image</label><br>
-        <input type="file" name="image" accept="image/*" required><br><br>
+        <h2><i class="fa-solid fa-image"></i> Product Image</h2><br>
+        <input type="file" name="image" accept="image/*" class="imgg" required><br><br>
 
-        <button type="submit" class="btn">Add Product</button>
+        <button type="submit" class="btn"> Add Product</button>
         </div>
 
         </form>

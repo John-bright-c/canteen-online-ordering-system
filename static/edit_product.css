@@ -50,6 +50,7 @@ nav a:hover{
 
 
 footer{
+    margin-top: 50px;
     text-align: center;
     size: 8px;
     width:100%;
@@ -64,7 +65,7 @@ footer{
     padding: 20px;
     border-radius: 15px;
     width: 550px;
-    height: 250px;
+    height: 500px;
     box-shadow:0 8px 20px black;
 }
 .container1 h2{
@@ -73,25 +74,35 @@ footer{
     color: #e68900;
 }
 .container2{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
     background: white;
     margin: 20px;
     padding: 20px;
     border-radius: 15px;
     width: 550px;
-    height: 150px;
+    height: 500px;
     box-shadow:0 8px 20px black;
 }
 label{
     font-weight: bold;
     margin-left: 30px;
+    margin-top: 10px;
 }
 .input{
     width: 400px;
-    margin-top: 10px;
-    height: 30px;
+    margin-top: 20px;
+    height: 40px;
     border-radius: 5px;
     margin-left: 30px;
     border: 0.5px solid #2d2d2d;
+}
+
+.container2 img{
+    margin: 0;
+    margin-left: 120px;
+    transform: translateY(-10%);
+    height: 300px;
 }
 
 .image{
@@ -102,8 +113,8 @@ label{
 .btn{
     color: white;
     font-weight: bold;
-    width: 450px;
-    height: 40px;
+    width: 500px;
+    height: 50px;
     border-radius: 12px;
     border: none;
     margin: 0px 35px;
@@ -116,10 +127,28 @@ label{
     transform: scale(1.05);
     background: #e68900;
 }
+
+.cancel{
+    color: white;
+    font-weight: bold;
+    width: 500px;
+    height: 50px;
+    border-radius: 12px;
+    border: none;
+    margin: 0px 35px;
+    background: #e69800;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.cancel:hover{
+    transform: scale(1.05);
+    background: #e68900;
+}
 .container2 input[type="file"]::file-selector-button{
     padding: 8px 16px;
     margin: 10px;
-    text-align: center;
+    text-align: left;
     height: 40px;
     margin-left: 30px;
     border-radius: 8px;
@@ -135,4 +164,24 @@ label{
 
 .imgg{
     margin-right: -40px;
+}
+
+.container{
+    display: flex;
+}
+
+.button{
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+    margin-top: -80px;
+}
+.button i{
+    font-size: 30px;
+}
+
+label,.input{
+    margin-bottom: 30px;
 }

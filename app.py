@@ -274,20 +274,44 @@ def edit_menu():
     foods = cursor.fetchall()
     return render_template("edit_menu.html",foods = foods)
 
-@app.route("/edit/<int:id>", methods = ["GET", "POST"])
+@app.route("/edit/<int:id>", methods=["GET", "POST"])
 def edit(id):
+
     if request.method == "POST":
         name = request.form["name"]
-        price= request.form["price"]
+        price = request.form["price"]
         category = request.form["category"]
-        image= request.form["image"]
+        image_file = request.files.get("image")
 
-        cursor.execute("""update products set name = %s, price = %s, category= %s, image = %s where id = %s""", (name,price,category,image,id))
+        if image_file and image_file.filename:
+            filename = secure_filename(image_file.filename)
+            image_file.save(
+                os.path.join(app.root_path, "static", "images", filename)
+            )
+
+            cursor.execute(
+                """UPDATE products
+                   SET name=%s, price=%s, category=%s, image=%s
+                   WHERE id=%s""",
+                (name, price, category, filename, id)
+            )
+        else:
+            cursor.execute(
+                """UPDATE products
+                   SET name=%s, price=%s, category=%s
+                   WHERE id=%s""",
+                (name, price, category, id)
+            )
+
         db.commit()
         return redirect("/edit_menu")
-    cursor.execute("select*from products where id = %s",(id,))
+
+    cursor.execute(
+        "SELECT * FROM products WHERE id=%s", (id,)
+    )
     food = cursor.fetchone()
-    return render_template("edit_product.html",food=food)
+
+    return render_template("edit_product.html", food=food)
 
 @app.route("/remove_product/<int:id>")
 def remove_product(id):

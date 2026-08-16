@@ -3,23 +3,62 @@
     <head>
         <title>Edit Product</title>
     </head>
-
+    <link rel="stylesheet" href="{{url_for('static',filename='edit_product.css')}}">
+    <link rel="stylesheet" href="edit_product.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <body>
+
+    <header>
+    <div class="logo">  
+    <img src="{{url_for('static', filename='images/CB logo.png')}}" width="50">
+    <a href="/admin_dashboard" class="cb"><p>CanteenBite</p>
+    </a>
+    </div>
+    <nav>
+    <a href="/admin_dashboard">Home</a>
+    <a href="/manage_orders" class="menu">Manage</a>
+    <a href="/edit_menu">Edit Menu</a>
+    </nav>
+    </header>
+
+
         <h1>Edit Product</h1>
-        <form method="POST">
-            <label> Product Name </label>
-            <input type="text" name="name" value="{{ food.name }}"><br><br>
+<div class="container">
+        <div class="container1">
+             <h2> <i class="fa-solid fa-cube"></i>
+                Product information</h2>
 
-            <label> Price </label>
-            <input type="number" name="price" value="{{ food.price }}"><br><br>
+        <form method="POST" enctype="multipart/form-data">
+            <div class="text">
+            <label> Product Name </label><br>
+            <input type="text" name="name" value="{{ food.name }}" class="input"><br><br>
 
-            <label> Category </label>
-            <input type="text" name="category" value="{{ food.category }}"><br><br>
+            <label> Price </label><br>
+            <input type="number" name="price" value="{{ food.price }}" class="input"><br><br>
 
-            <label> Image </label>
-            <input type="text" name="image" value="{{ food.image }}"><br><br>
-
-            <button type="submit">Save Changes</button>
+            <label>Category</label><br>
+            <select name="category" class="input" >
+                <option value="">----Select Category----</option>
+                <option value="Snacks" {% if food.category == "Snacks" %}selected{% endif %}>Snacks</option>
+                <option value="Food" {% if food.category == "Food" %}selected{% endif %}>Meals</option>
+                <option value="Drinks" {% if food.category == "Drinks" %}selected{% endif %}>Drinks</option> 
+        </select><br><br>
+        </div>
+        </div>
+        <div class="container2">
+            <h2><i class="fa-solid fa-image"></i> Product Image</h2><br>
+            <img src="{{ url_for('static',filename='images/'+food.image) }}">
+            <input type="file" name="image" accept="image/*" class="imgg"><br><br>
+        </div>
         </form>
+    </div>
+        <div class="button">
+            <a href="/edit_menu">
+            <button class="cancel">Cancel</button>
+            </a>
+            <button type="submit" class="btn"><i class="fa-solid fa-save"></i>  Save Changes</button>
+            </div>
+    
+    <footer>Copyright © CanteenBite</footer>
     </body>
 </html>
