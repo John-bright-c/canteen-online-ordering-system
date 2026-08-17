@@ -3,11 +3,12 @@
     <title>Register to CanteenBite</title>
 </head>
 <link rel="stylesheet" href="{{url_for('static', filename='register.css')}}">
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
 <body>
 <header>CanteenBites</header>
 <img src="{{url_for('static',filename = 'images/CB Logo.png')}}" alt="logo" class="logo">
 
-<div class="container">
+<div class="container" data-aos="fade-down" data-aos-duration="3000">
 <form action="/register" method="POST">
 <h1>Register to CanteenBite</h1>
 <p>Full Name</p>
@@ -27,4 +28,12 @@
     copyright@CanteenBite
 </div>
 </div>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+
+</script>
 </body>
+</html>

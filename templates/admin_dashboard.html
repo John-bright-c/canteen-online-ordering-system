@@ -4,6 +4,7 @@
         <title> Menu page </title>
     </head>
     <link rel="stylesheet" href="{{url_for('static',filename='admin_dashhboard.css')}}">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <body>
     
@@ -26,12 +27,12 @@
 <p>Here's what happening in your canteen.</p>
 </div>
 
-<div class="day">
+<div class="day" data-aos="fade-in" data-aos-duration="1000" easing="ease-in">
     📅: {{ day }}, {{ date }}
 
 </div>
 
-<div class="head">
+<div class="head" data-aos="fade-up" data-aos-duration="1000" easing="ease-in">
 
     <div class="total-orders">
         <span class="no">{{ total_orders.total_orders }} </span>
@@ -54,7 +55,7 @@
 </div>
 </div>
 
-<div class="container2">
+<div class="container2" data-aos="fade-up" data-aos-duration="2000" easing="ease-in">
 <p class="orders">🧾 Recent Orders :</p>
 
 
@@ -83,7 +84,7 @@
 </div>
 </div>
 
-<div class="container1">
+<div class="container1" data-aos="fade-up" data-aos-duration="2000" easing="ease-in">
 
 <div class="popular">
     <h2>🔥Top selling Items</h2><br>
@@ -139,4 +140,8 @@
 
 <footer>Copyright © CanteenBite</footer>
 </body>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
 </html>
