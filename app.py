@@ -338,6 +338,10 @@ def admin_add_product():
 
     return render_template("admin_add_product.html")
 
+@app.route("/admin_reports")
+def admin_reports():
+    return render_template("/admin_reports.html")
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)  
 
