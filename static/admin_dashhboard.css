@@ -193,11 +193,32 @@ footer{
 }
 
 .popular{
+    text-align: left;
     background: white;
+    padding: 12px;
     width: 500px;
     height: 350px;
     border-radius: 12px;
 }
+.popular h2{
+    margin-bottom: 10px;
+}
+.popular .p{
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    margin-top: 34px;
+    margin-left: 30px;
+    border-bottom: 1px solid #ddd;
+}
+.popular .p span:last-child{
+    text-align: left;
+    justify-self: end;
+    margin-right: 20px;
+}
+.clr{
+    color: blue;
+}
+
 .quick{
     display: grid;
     grid-template-columns: 1fr 1fr;

@@ -249,8 +249,10 @@ def admin_dashboard():
     revenue=cursor.fetchone()
     ["revenue"] or 0
 
+    cursor.execute("""select product_name,sum(quantity) as total_sold from orders group by product_name order by total_sold desc limit 5""")
+    top_products = cursor.fetchall()
 
-    return render_template("admin_dashboard.html",day=today.strftime("%A"),date=today.strftime("%d %B %Y"), total_orders=total_orders, pending_orders=pending_orders,ready_orders=ready_orders, revenue=revenue ,orders=orders)
+    return render_template("admin_dashboard.html",day=today.strftime("%A"),date=today.strftime("%d %B %Y"), total_orders=total_orders, pending_orders=pending_orders,ready_orders=ready_orders, revenue=revenue ,orders=orders,top_products=top_products)
 
 
 @app.route("/update_status",methods=["POST"])
