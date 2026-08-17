@@ -340,7 +340,26 @@ def admin_add_product():
 
 @app.route("/admin_reports")
 def admin_reports():
-    return render_template("/admin_reports.html")
+    cursor.execute("""select count(distinct token_no) as total_orders,round(sum(total)*1.05,2) as total,round(avg(total)*1.05,2) as avg_revenue,count(quantity) as item_sold from orders""")
+    order = cursor.fetchall()
+
+    cursor.execute("select count(distinct token_no) as total_orders from orders")
+    total_orders=cursor.fetchone()
+    ["total_orders"]
+
+    cursor.execute("select round(sum(total)*1.05,2) as total_revenue from orders")
+    total_revenue=cursor.fetchone()
+    ["total_revenue"]
+
+    cursor.execute("select round(avg(total)*1.05,2) as avg_revenue from orders")
+    avg_revenue=cursor.fetchone()
+    ["avg_revenue"]
+
+    cursor.execute("select count(quantity) as items_sold from orders")
+    items_sold=cursor.fetchone()
+    ["items_sold"]
+
+    return render_template("/admin_reports.html",orders=orders,total_orders=total_orders,total_revenue=total_revenue,avg_revenue=avg_revenue,items_sold=items_sold)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)  

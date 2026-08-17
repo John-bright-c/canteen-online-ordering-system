@@ -20,6 +20,35 @@
     </nav>
     </header>
 
+<div class="top">
+    <h1><span>📋</span> Reports </h1><br>
+    <p>Track your Canteen performance and explore detailed insights.</p>
+</div>
+
+    <div class="Container">
+        <div class="card">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <h3>Total Orders</h3>
+           <span>{{ total_orders.total_orders }}</span>
+        </div>
+        <div class="card">
+            <i class="fa-solid fa-indian-rupee-sign"></i>
+            <h3>Total Revenue</h3>
+            <span>₹ {{ total_revenue.total_revenue }}</span>
+        </div>
+        <div class="card">
+            <i class="fa-solid fa-chart-line"></i>
+            <h3>Average Value</h3>
+            <span>₹ {{ avg_revenue.avg_revenue }}</span>
+        </div>
+        <div class="card">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <h3>Items Sold</h3>
+            <span>{{ items_sold.items_sold }}</span>
+        </div>
+
+</div>
+
 
 
 
