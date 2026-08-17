@@ -5,6 +5,7 @@
     </head>
     <link rel="stylesheet" href="{{url_for('static',filename='confirm_order.css')}}">
     <link rel="stylesheet" href="checkout.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <body>
     
     <header>
@@ -33,7 +34,7 @@
 
         <h2>Your Token Number</h2>
 
-        <div class="token">
+        <div class="token" data-aos="flip-left" data-aos-duration="3000">
             {{token}}
         </div>
 
@@ -73,4 +74,8 @@ Copyright © CanteenBite
 </footer>
 
 </body>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 </html>

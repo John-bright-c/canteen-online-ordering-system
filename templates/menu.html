@@ -4,6 +4,7 @@
         <title> Menu page </title>
     </head>
     <link rel="stylesheet" href="{{url_for('static',filename='menu.css')}}">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     
     <header>
     <div class="logo">  
@@ -43,7 +44,7 @@
 
     {% for product in products %}
 
-    <div class="card">
+    <div class="card" data-aos="fade-up" data-aos-duration="1500">
         <img src=" {{ url_for('static', filename='images/'+ product.image) }} " alt="{{ product.name }}">
 
         <h3>{{ product.name }}</h3>
@@ -60,4 +61,8 @@
 </div>
 <footer><p>Copyright © CanteenBite</p></footer>
 </body>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 </html>

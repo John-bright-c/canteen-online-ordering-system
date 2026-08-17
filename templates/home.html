@@ -5,6 +5,7 @@
     </head>
     <link rel="stylesheet" href="{{url_for('static',filename='home.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <header>
     <div class="logo">  
     <img src="{{url_for('static', filename='images/CB logo.png')}}" class="hii"  alt="logo">
@@ -31,7 +32,7 @@
 
     <body>
        
-    <div class="hero">
+    <div class="hero" data-aos="fade-in" data-aos-duration="3000">
         <h1>Delicious Meals. <br> Zero 
         <span>Waiting.</span>🔥<br></h1><br>
         <p> Order your favorite food from the canteen <br> before you reach the counter.</p><br>
@@ -64,7 +65,8 @@
         </div>
     </div>
 
-    <div class="container1">
+    <div class="container1"  data-aos="fade-up"
+     data-aos-duration="3000">
         <h2>How It Works</h2><br>
     <div class="works">
         <div class="menu">
@@ -95,7 +97,8 @@
 
     </div>
 
-    <div class="container2">
+    <div class="container2"  data-aos="fade-up"
+     data-aos-duration="3000">
 
     <h2>WHY CHOOSE OUR SYSTEM?</h2><br>
     <div class="choose">
@@ -126,7 +129,8 @@
 
     </div>
    
-<div class="container3">
+<div class="container3"  data-aos="fade-up"
+     data-aos-duration="3000">
     <h2><span>Hungry?</span> Let's get your order started!</h2>
     <p>Browse the menu and order your food in seconds.</p>
     <a href="/menu">
@@ -139,4 +143,8 @@
 
 
 </body>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 </html>
