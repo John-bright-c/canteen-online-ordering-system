@@ -5,6 +5,7 @@
 
     <link rel="stylesheet" href="{{url_for('static',filename='admin_reports.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js"> 
     
     <body>
     <header>
@@ -26,7 +27,7 @@
     <p>Track your Canteen performance and explore detailed insights.</p>
 </div>
 
-    <div class="Container">
+        <div class="Container">
         <div class="card">
             <i class="fa-solid fa-bag-shopping"></i>
             <h3>Total Orders</h3>
@@ -48,8 +49,9 @@
             <span>{{ items_sold.items_sold }}</span>
         </div>
 
-</div>
+    </div>
 
+<div class="container2">    
 <div class="Recent_Orders"> 
     <h2>📦 Recent Orders Summary</h2>
     <div class="head">
@@ -67,11 +69,48 @@
         <span>{{ order.status }}</span>
         {% endfor %}
     </div>
-    
 </div>
+<div class="chart">
+    <h2>Chart</h2>
+    <canvas id="myChart"></canvas>
+</div>
+</div>
+
+
 
 
     <footer>Copyright © CanteenBite</footer>
 </body>
- 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('myChart')
+const data = {
+  labels: [
+    'Red',
+    'Blue',
+    'Yellow'
+  ],
+  datasets: [{
+    label: 'My First Dataset',
+    data: [300, 50, 100],
+    backgroundColor: [
+      'rgb(255, 99, 132)',
+      'rgb(54, 162, 235)',
+      'rgb(255, 205, 86)'
+    ],
+    hoverOffset: 4
+  }]
+};
+
+const config = {
+  type: 'doughnut',
+  data: data,
+};
+new Chart(ctx, config);
+module.exports = {
+  actions: [],
+  config: config,
+};
+</script>
+
 </html>
