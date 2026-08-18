@@ -17,7 +17,7 @@
     <a href="/admin_dashboard">Home</a>
     <a href="/manage_orders" class="menu">Manage</a>
     <a href="/edit_menu">Edit Menu</a>
-    <a href="/orders">Orders</a>
+    <a href="/admin_reports">View Reports</a>
     </nav>
     </header>
 
@@ -27,6 +27,7 @@
 <div class="container">
 
     <div class="heading">
+        <p>Date</p>
         <p>Token</p>
         <p>Product</p>
         <p>Qty</p>
@@ -39,7 +40,7 @@
 <form action="/update_status" method="POST" class="order-row">
 
     <input type="hidden" name="token" value="{{ order.token_no }}">
-
+    <div>{{ order.order_date }}</div>
     <div>{{ order.token_no }}</div>
     <div>{{ order.product_name }}</div>
     <div>{{ order.quantity }}</div>

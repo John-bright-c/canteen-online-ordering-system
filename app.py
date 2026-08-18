@@ -205,7 +205,7 @@ def orders():
     if "user" not in session:
         return redirect("/login")
     register_no= session["register_no"]
-    cursor.execute("""select token_no,max(order_date) as order_date,date_format(max(order_time),'%h:%i %p') as order_time,group_concat(concat(quantity, ' ', product_name)
+    cursor.execute("""select token_no,max(date_format(order_date,'%d/%m/%Y')) as order_date,date_format(max(order_time),'%h:%i %p') as order_time,group_concat(concat(quantity, ' ', product_name)
     separator ', ') as product_name, sum(quantity) as quantity, round(sum(total) * 1.05, 2)
     as total, max(order_status) as order_status from orders where register_no = %s 
     group by token_no order by max(order_id) desc""",(register_no,))
@@ -229,7 +229,7 @@ def admin():
 
 @app.route("/admin_dashboard")
 def admin_dashboard():
-    cursor.execute("""select token_no,max(order_date) as order_date,date_format(max(order_time),'%h:%i %p') as order_time,group_concat(concat(quantity, ' ', product_name) separator ', ') as product_name, sum(quantity) as quantity, round(sum(total) * 1.05, 2) as total, max(order_status) as order_status from orders group by token_no order by max(order_id) desc""")
+    cursor.execute("""select token_no,max(date_format(order_date,'%d/%m/%Y')) as order_date,date_format(max(order_time),'%h:%i %p') as order_time,group_concat(concat(quantity, ' ', product_name) separator ', ') as product_name, sum(quantity) as quantity, round(sum(total) * 1.05, 2) as total, max(order_status) as order_status from orders group by token_no order by max(order_id) desc""")
     orders = cursor.fetchall()
     today = datetime.now()
     
@@ -266,9 +266,11 @@ def update_status():
 
 @app.route("/manage_orders")
 def manage_orders():
-    cursor.execute("""select token_no, group_concat(concat(quantity, ' ', product_name) separator ', ') as product_name, sum(quantity) as quantity, round(sum(total) * 1.05, 2) as total, max(order_status) as order_status from orders group by token_no order by max(order_id) desc""")
+    cursor.execute("""select date_format(order_date,'%d/%m/%Y') as order_date,token_no, group_concat(concat(quantity, ' ', product_name) separator ', ') as product_name, sum(quantity) as quantity, round(sum(total) * 1.05, 2) as total, max(order_status) as order_status from orders group by token_no,order_date order by order_date desc""")
     orders=cursor.fetchall()
-    return render_template("manage_orders.html",orders=orders)
+    cursor.execute("select order_date from orders")
+    order_date=cursor.fetchall()
+    return render_template("manage_orders.html",orders=orders,order_date=order_date)
 
 @app.route("/edit_menu")
 def edit_menu():
@@ -359,7 +361,12 @@ def admin_reports():
     items_sold=cursor.fetchone()
     ["items_sold"]
 
-    return render_template("/admin_reports.html",orders=orders,total_orders=total_orders,total_revenue=total_revenue,avg_revenue=avg_revenue,items_sold=items_sold)
+    cursor.execute("""select date_format(order_date,'%d/%m/%Y') as order_date,sum(quantity) as total_orders,
+    round(sum(total)*1.05,2) as revenue, max(order_status) as status from orders group by order_date order by order_date desc""")
+    recent_orders=cursor.fetchall()
+
+    return render_template("/admin_reports.html",recent_orders=recent_orders,total_orders=total_orders,total_revenue=total_revenue,avg_revenue=avg_revenue,items_sold=items_sold)
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)  

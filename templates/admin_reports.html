@@ -5,7 +5,7 @@
 
     <link rel="stylesheet" href="{{url_for('static',filename='admin_reports.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
+    
     <body>
     <header>
     <div class="logo">  
@@ -17,6 +17,7 @@
     <a href="/admin_dashboard">Home</a>
     <a href="/manage_orders" class="menu">Manage</a>
     <a href="/edit_menu">Edit Menu</a>
+    <a href="/admin_reports">View Reports</a>
     </nav>
     </header>
 
@@ -49,11 +50,28 @@
 
 </div>
 
+<div class="Recent_Orders"> 
+    <h2>📦 Recent Orders Summary</h2>
+    <div class="head">
+        <p>Date</p>
+        <p>Total Orders</p>
+        <p>Revenue</p>
+        <p>Status</p>
+    </div>
 
-
-
+    <div class="row">
+        {% for order in recent_orders %}
+        <span>{{ order.order_date }}</span>
+        <span>{{ order.total_orders }}</span>
+        <span>{{ order.revenue }}</span>
+        <span>{{ order.status }}</span>
+        {% endfor %}
+    </div>
+    
+</div>
 
 
     <footer>Copyright © CanteenBite</footer>
 </body>
+ 
 </html>
