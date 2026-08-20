@@ -90,26 +90,27 @@ nav a:hover {
     margin: 30px;
 }
 .card h3,.card span{
-    margin-left: 100px;
-    margin-top: -40px;
+    margin-left: 80px;
+    margin-top: -20px;
 }
 
 .card span{
     margin-top: 20px;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
 }
 
 .card i{
+    color: #e69800;
     background-color: rgba(172, 255, 28, 0.2);
-    width: 90px;
+    width: 60px;
     border: #e68900 solid 1px;
     text-align: center;
     padding: 10px;
-    font-size: 50px;
-    height: 70px;
+    font-size: 30px;
+    height: 50px;
     border-radius: 8px;
-    transform: translateY(20px);
+    transform: translateY(23px);
     
 }
 .head,.row{
@@ -137,6 +138,7 @@ nav a:hover {
     margin: 20px;
     border-radius: 12px;
     border: 2px solid skyblue;
+    overflow-y: scroll;
 }
 .recent_orders h2{
     text-align: left;

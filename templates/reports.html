@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canteen Admin - Reports</title>
+
+  <!-- Icons -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="{{url_for('static',filename='reports.css')}}">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link rel="stylesheet" href="reports.css">
+</head>
+
+<body>
+  <div class="app">
+
+    <!-- ================= TOP HEADER ================= -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-icon"><i class="fa-solid fa-utensils"></i></div>
+        <div>
+          <h1>CANTEEN</h1>
+          <span>Admin Panel</span>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <div class="date-time">
+          <span><i class="fa-regular fa-calendar"></i> 14 May 2025, Wednesday</span>
+          <span class="divider"></span>
+          <span><i class="fa-regular fa-clock"></i> 07:45 PM</span>
+        </div>
+
+        <button class="icon-btn notification">
+          <i class="fa-regular fa-bell"></i>
+          <b>5</b>
+        </button>
+
+        <div class="admin-profile">
+          <div class="avatar">👨🏻</div>
+          <span>Admin</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-layout">
+
+      <!-- ================= SIDEBAR ================= -->
+      <aside class="sidebar">
+        <nav>
+          <a href="#"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
+          <a href="#"><i class="fa-solid fa-basket-shopping"></i><span>Orders</span></a>
+          <a href="#"><i class="fa-solid fa-box"></i><span>Products</span></a>
+          <a href="#"><i class="fa-solid fa-users"></i><span>Customers</span></a>
+          <a href="#"><i class="fa-solid fa-chart-column"></i><span>Analytics</span></a>
+          <a class="active" href="#"><i class="fa-solid fa-clipboard-list"></i><span>Reports</span><em></em></a>
+          <a href="#"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+        </nav>
+
+        <a class="logout" href="#">
+          <i class="fa-solid fa-power-off"></i>
+          <span>Logout</span>
+        </a>
+      </aside>
+
+      <!-- ================= CONTENT ================= -->
+      <main class="content">
+
+        <section class="page-heading">
+          <div class="heading-title">
+            <div class="heading-icon"><i class="fa-regular fa-clipboard"></i></div>
+            <div>
+              <h2>Reports</h2>
+              <p>Track your canteen performance and explore detailed insights.</p>
+            </div>
+          </div>
+
+          <div class="heading-actions">
+            <button class="date-filter">
+              <i class="fa-regular fa-calendar"></i>
+              <span>08 May 2025 - 14 May 2025</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <button class="export-btn">
+              <i class="fa-solid fa-download"></i>
+              Export Report
+            </button>
+          </div>
+        </section>
+
+        <!-- ================= KPI CARDS ================= -->
+        <section class="stats-grid">
+          <div class="stat-card orange">
+            <div class="stat-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+            <div>
+              <p>Total Orders</p>
+              <h3>245</h3>
+              <small><strong>↑ 18%</strong> from last week</small>
+            </div>
+          </div>
+
+          <div class="stat-card green">
+            <div class="stat-icon"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+            <div>
+              <p>Total Revenue</p>
+              <h3>₹24,850</h3>
+              <small><strong>↑ 15%</strong> from last week</small>
+            </div>
+          </div>
+
+          <div class="stat-card blue">
+            <div class="stat-icon"><i class="fa-solid fa-chart-line"></i></div>
+            <div>
+              <p>Average Order Value</p>
+              <h3>₹101.43</h3>
+              <small><strong>↑ 6%</strong> from last week</small>
+            </div>
+          </div>
+
+          <div class="stat-card purple">
+            <div class="stat-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+            <div>
+              <p>Items Sold</p>
+              <h3>698</h3>
+              <small><strong>↑ 12%</strong> from last week</small>
+            </div>
+          </div>
+
+          <div class="stat-card red">
+            <div class="stat-icon"><i class="fa-solid fa-user-group"></i></div>
+            <div>
+              <p>New Customers</p>
+              <h3>32</h3>
+              <small><strong>↑ 14%</strong> from last week</small>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= CHARTS ================= -->
+        <section class="charts-grid">
+
+          <div class="panel sales-panel">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-chart-line"></i> Sales Overview</h3>
+              <button class="mini-select">This Week <i class="fa-solid fa-chevron-down"></i></button>
+            </div>
+            <div class="chart-wrap">
+              <canvas id="salesChart"></canvas>
+            </div>
+          </div>
+
+          <div class="panel status-panel">
+            <div class="panel-header">
+              <h3><i class="fa-regular fa-clock"></i> Orders by Status</h3>
+            </div>
+
+            <div class="status-content">
+              <div class="donut-wrap">
+                <canvas id="statusChart"></canvas>
+                <div class="donut-center">
+                  <strong>245</strong>
+                  <span>Total Orders</span>
+                </div>
+              </div>
+
+              <div class="legend">
+                <div><span class="dot red-dot"></span><label>New</label><b>25 <small>(10%)</small></b></div>
+                <div><span class="dot orange-dot"></span><label>Preparing</label><b>48 <small>(20%)</small></b></div>
+                <div><span class="dot blue-dot"></span><label>Ready</label><b>67 <small>(27%)</small></b></div>
+                <div><span class="dot green-dot"></span><label>Completed</label><b>105 <small>(43%)</small></b></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel category-panel">
+            <div class="panel-header">
+              <h3><i class="fa-regular fa-clipboard"></i> Revenue by Category</h3>
+              <button class="mini-select">This Week <i class="fa-solid fa-chevron-down"></i></button>
+            </div>
+            <div class="chart-wrap category-chart">
+              <canvas id="categoryChart"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TABLES ================= -->
+        <section class="bottom-grid">
+
+          <div class="panel table-panel">
+            <div class="panel-header">
+              <h3><i class="fa-regular fa-star"></i> Top Selling Items</h3>
+              <button class="mini-select">This Week <i class="fa-solid fa-chevron-down"></i></button>
+            </div>
+
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Item</th>
+                    <th>Category</th>
+                    <th>Quantity Sold</th>
+                    <th>Revenue</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td><td><span class="food">🍕</span> Chicken Pizza</td>
+                    <td><span class="tag orange-tag">Pizza</span></td><td>86</td><td>₹6,450</td>
+                  </tr>
+                  <tr>
+                    <td>2</td><td><span class="food">🍔</span> Cheese Burger</td>
+                    <td><span class="tag orange-tag">Burgers</span></td><td>78</td><td>₹4,680</td>
+                  </tr>
+                  <tr>
+                    <td>3</td><td><span class="food">🍟</span> French Fries</td>
+                    <td><span class="tag orange-tag">Snacks</span></td><td>72</td><td>₹2,880</td>
+                  </tr>
+                  <tr>
+                    <td>4</td><td><span class="food">🥤</span> Cold Coffee</td>
+                    <td><span class="tag blue-tag">Beverages</span></td><td>64</td><td>₹2,560</td>
+                  </tr>
+                  <tr>
+                    <td>5</td><td><span class="food">🌯</span> Paneer Roll</td>
+                    <td><span class="tag green-tag">Rolls</span></td><td>49</td><td>₹2,205</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <a class="view-link" href="#">View All Items <span>→</span></a>
+          </div>
+
+          <div class="panel table-panel">
+            <div class="panel-header">
+              <h3><i class="fa-regular fa-calendar-check"></i> Recent Orders Summary</h3>
+              <button class="outline-btn">View All Orders</button>
+            </div>
+
+            <div class="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Total Orders</th>
+                    <th>Revenue</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>14 May 2025</td><td>42</td><td>₹4,250</td><td><span class="status">Completed</span></td></tr>
+                  <tr><td>13 May 2025</td><td>38</td><td>₹3,120</td><td><span class="status">Completed</span></td></tr>
+                  <tr><td>12 May 2025</td><td>45</td><td>₹4,870</td><td><span class="status">Completed</span></td></tr>
+                  <tr><td>11 May 2025</td><td>33</td><td>₹2,890</td><td><span class="status">Completed</span></td></tr>
+                  <tr><td>10 May 2025</td><td>44</td><td>₹4,350</td><td><span class="status">Completed</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <a class="view-link" href="#">View Full Report <span>→</span></a>
+          </div>
+        </section>
+
+        <footer>© 2025 CanteenCafe. All rights reserved.</footer>
+      </main>
+    </div>
+  </div>
+
+  <script src="reports.js"></script>
+</body>
+</html>

@@ -86,20 +86,25 @@
     const ctx = document.getElementById('myChart')
 const data = {
   labels: [
-    'Red',
-    'Blue',
-    'Yellow'
+    {% for row in status_data %}
+        "{{ row.order_status }}"{% if not loop.last %},{% endif %}
+        {% endfor %}
   ],
-  datasets: [{
+  datasets: [
+    {
     label: 'My First Dataset',
-    data: [300, 50, 100],
+    data: [
+        {% for row in status_data %}
+            {{ row.count }}{% if not loop.last %},{% endif %}
+        {% endfor %}
+    ],
     backgroundColor: [
       'rgb(255, 99, 132)',
       'rgb(54, 162, 235)',
       'rgb(255, 205, 86)'
+      'rgb(75,192,120)'
     ],
-    hoverOffset: 4
-  }]
+    hoverOffset: 4}]
 };
 
 const config = {

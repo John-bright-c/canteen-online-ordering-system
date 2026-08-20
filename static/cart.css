@@ -213,6 +213,7 @@ body{
     border-radius: 5px;
     cursor: pointer;
     font-size: 18px;
+    text-align: center;
 }
 
 .qty-box button:hover{
@@ -223,6 +224,7 @@ body{
     background: white;
     text-align: center;
     color: white;
+    padding: 4px;
     background: none;
     margin-right: -30px;
 }

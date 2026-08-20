@@ -19,6 +19,7 @@
     <a href="/manage_orders" class="menu">Manage</a>
     <a href="/edit_menu">Edit Menu</a>
     <a href="/admin_reports">View Reports</a>
+    <a href="/reports">Reports</a>
     </nav>
     </header>
 
@@ -35,21 +36,25 @@
 <div class="head" data-aos="fade-up" data-aos-duration="1000" easing="ease-in">
 
     <div class="total-orders">
+        <i class="fa-solid fa-bag-shopping"></i>
         <span class="no">{{ total_orders.total_orders }} </span>
     <p>Total orders</p>
 </div>
 
 <div class="pending">
+    <i class="fa-solid fa-clock"></i>
   <span class="no"> {{ pending_orders.pending_orders }} </span>
     <p>Pending orders</p>
 </div>
 
 <div class="ready_orders">
+    <i class="fa-solid fa-boxes-packing"></i>
    <span class="no"> {{ ready_orders.ready_orders }} </span>
     <p>Ready orders</p>
 </div>
 
 <div class="total-revenue">
+    <i class="fa-solid fa-indian-rupee-sign"></i>
    <span class="no">₹{{ revenue.revenue }} </span>    
     <p>Total Revenue</p>
 </div>

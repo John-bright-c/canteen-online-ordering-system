@@ -365,8 +365,14 @@ def admin_reports():
     round(sum(total)*1.05,2) as revenue, max(order_status) as status from orders group by order_date order by order_date desc""")
     recent_orders=cursor.fetchall()
 
-    return render_template("/admin_reports.html",recent_orders=recent_orders,total_orders=total_orders,total_revenue=total_revenue,avg_revenue=avg_revenue,items_sold=items_sold)
+    cursor.execute("""select order_status,count(distinct token_no) as count from orders group by order_status""")
+    status_data=cursor.fetchall()
 
+    return render_template("/admin_reports.html",recent_orders=recent_orders,total_orders=total_orders,total_revenue=total_revenue,avg_revenue=avg_revenue,items_sold=items_sold,status_data=status_data)
+
+app.route("/reports")
+def reports():
+    return render_template("reports.html")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)  

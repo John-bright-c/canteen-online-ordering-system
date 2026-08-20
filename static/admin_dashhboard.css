@@ -101,14 +101,39 @@ footer{
 }
 
 .head{
+    text-align: left;
     display: flex;
+    justify-content: space-around;
+}
+.head span,.head p{
+    margin-left: 60px;
+}
+
+.head i{
+    font-size: 36px;
+    color: white;
+    background: rgb(249, 198, 101);
+    width: 60px;
+    text-align: center;
+    transform: translateY(10px);
+    margin-left: -20px;
+    padding: 8px;
+    border-radius: 6px;
+    border: #e68900 2px solid;
+}
+
+
+.head span{
+    color: #e69800;
+    font-size: 30px;
 }
 
 .total-orders p, .pending p, .ready_orders p, .total-revenue p{
     font-weight: bold;
     text-align: left;
-    margin-top: 60px;
+    margin-top: -80px;
     color: #2d2d2d;
+
 }
 
 
@@ -116,48 +141,47 @@ footer{
     font-weight: bolder;
     border-radius: 12px;
     background:white;
-    height: 200px;
-    width: 250px;
+    height: 150px;
+    width: 280px;
     padding: 40px;
-    margin: 50px auto;
-    
+    margin-top: 40px;
 }
 
 .pending{
     font-weight: bolder;
     border-radius: 12px;
     background:white;
-    height: 200px;
-    width: 250px;
+    height: 150px;
+    width: 280px;
     padding: 40px;
-    margin: 50px auto;
-    
+    margin-top: 40px;    
 }
 
 .ready_orders{
     font-weight: bolder;
     border-radius: 12px;
     background:white;
-    height: 200px;
-    width: 250px;
+    height: 150px;
+    width: 280px;
     padding: 40px;
-    margin: 50px auto;
+    margin-top: 40px;
 }
 
 .total-revenue{
     font-weight: bolder;
     border-radius: 12px;
     background:white;
-    height: 200px;
-    width: 250px;
+    height: 150px;
+    width: 280px;
     padding: 40px;
-    margin: 50px auto;
+    margin-top: 40px;
     
 }
 
+
 .orders{
     margin-top: 20px;
-    color: #2d2d2d;
+    color: #e69800;
     font-size: 36px;
     font-weight: bolder;
     text-align: left;
