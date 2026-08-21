@@ -21,7 +21,7 @@ body{
 .hero img{
     padding: 50px 50px;
     transform: translatex(23%)
-    translateY(-15%);
+    translateY(-14.3%);
     box-shadow: #2d2d2d;
     float: right;
     position: relative;
@@ -164,7 +164,7 @@ footer p{
     text-align: left;
 }
 
-.hero a{
+.order a{
     color: white;
     font-weight: bold;
     text-decoration: none;
@@ -176,7 +176,7 @@ footer p{
     cursor: pointer;
     transition: 0.3s ease;
 }
-.hero a:hover{
+.order a:hover{
     transform: scale(1.05);
     background: #e68900;
 
@@ -406,3 +406,63 @@ h2{
     font-size: 40px;
 }
 
+.btn {
+    position: relative;
+    cursor: pointer;
+    width: fit-content;
+    margin-left: 50px;
+    padding: 12px 24px;
+
+    border: 2px solid #ff7a00;
+    border-radius: 12px;
+
+    background: transparent;
+    color: #ffffff;
+
+    font-size: 1.5rem;
+    font-family: 'Lexend Zetta', sans-serif;
+
+    overflow: hidden;
+    transition: 0.3s ease;
+}
+
+
+.description {
+    position: relative;
+    z-index: 2;
+    color: #ffffff ;
+    font-weight: bold;
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 100%;
+    height: 100%;
+
+    background: #ff7a00;
+
+    transition: left 0.4s ease;
+}
+
+.btn:hover::before {
+    left: 0;
+}
+
+.btn:hover {
+    transform: translateY(-4px);
+
+    box-shadow: 0 8px 25px rgba(255, 122, 0, 0.35);
+}
+
+.btn:hover .description {
+    color: #ffffff;
+}
+
+.btn:active {
+    transform: translateY(-1px) scale(0.96);
+}

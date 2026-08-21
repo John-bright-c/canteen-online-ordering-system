@@ -43,16 +43,23 @@ def register():
 
     cursor = db.cursor()
 
+    cursor.execute("select *from register where register_no = %s",(register_no,))
+    existing = cursor.fetchone()
+    if existing:
+        return "Register number is already exist and used by someone"
+
     cursor.execute(
     "INSERT INTO register(full_name, register_no, email, password) VALUES (%s, %s, %s, %s)",
     (full_name, register_no, email, password)
 )
 
     db.commit()
-
     session["user"] = full_name
+    return redirect("/login")
+    
 
-    return redirect("/menu")
+
+
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -232,6 +239,7 @@ def admin_dashboard():
     cursor.execute("""select token_no,max(date_format(order_date,'%d/%m/%Y')) as order_date,date_format(max(order_time),'%h:%i %p') as order_time,group_concat(concat(quantity, ' ', product_name) separator ', ') as product_name, sum(quantity) as quantity, round(sum(total) * 1.05, 2) as total, max(order_status) as order_status from orders group by token_no order by max(order_id) desc""")
     orders = cursor.fetchall()
     today = datetime.now()
+
     
     cursor.execute("select count(distinct token_no) as total_orders from orders")
     total_orders= cursor.fetchone()
@@ -370,7 +378,7 @@ def admin_reports():
 
     return render_template("/admin_reports.html",recent_orders=recent_orders,total_orders=total_orders,total_revenue=total_revenue,avg_revenue=avg_revenue,items_sold=items_sold,status_data=status_data)
 
-app.route("/reports")
+@app.route("/reports")
 def reports():
     return render_template("reports.html")
 
