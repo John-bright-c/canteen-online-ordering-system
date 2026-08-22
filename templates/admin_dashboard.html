@@ -14,27 +14,38 @@
     <a href="/admin_dashboard" class="cb"><p>CanteenBite</p>
     </a>
     </div>
+    <div class="day" data-aos="fade-in" data-aos-duration="1000" easing="ease-in">
+    📅: {{ day }}, {{ date }}
+    </div>    
+    </header>
+
+
+<!  ---layout wrapper---     !>
+<div class="layout">
+
+<!  ---side-bar---     !>
+<aside class="side_bar">
     <nav>
-    <a href="/admin_dashboard">Home</a>
-    <a href="/manage_orders" class="menu">Manage</a>
+    <a href="/admin_dashboard" class="menu">Home</a>
+    <a href="/manage_orders">Manage</a>
     <a href="/edit_menu">Edit Menu</a>
     <a href="/admin_reports">View Reports</a>
     <a href="/reports">Reports</a>
+    <a href="/customers">Customers</a>
     </nav>
-    </header>
+</aside>
 
+<main class="main-content">
+
+<section>
 <div class="greetings">    
 <h1><b>Hello, Admin👋</b></h1>
 <p>Here's what happening in your canteen.</p>
 </div>
 
-<div class="day" data-aos="fade-in" data-aos-duration="1000" easing="ease-in">
-    📅: {{ day }}, {{ date }}
-
-</div>
+</section>
 
 <div class="head" data-aos="fade-up" data-aos-duration="1000" easing="ease-in">
-
     <div class="total-orders">
         <i class="fa-solid fa-bag-shopping"></i>
         <span class="no">{{ total_orders.total_orders }} </span>
@@ -63,7 +74,6 @@
 <div class="container2" data-aos="fade-up" data-aos-duration="2000" easing="ease-in">
 <p class="orders">🧾 Recent Orders :</p>
 
-
 <div class="container">
     <div class="heading">
         <div>Date</div>
@@ -86,6 +96,7 @@
         <div class="status">{{ order.order_status }}</div>
     </div>
     {% endfor %}
+</div>
 </div>
 </div>
 
@@ -123,7 +134,7 @@
     </div>
 
      <div class="add_product">
-        <a href="/manage_orders">
+        <a href="/customers">
             <button>
             <i class="fa-solid fa-users"></i>
             <p>Customers</p> 
@@ -144,6 +155,9 @@
 </div>
 
 <footer>Copyright © CanteenBite</footer>
+
+</main>
+</div>
 </body>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>

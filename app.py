@@ -188,12 +188,14 @@ def checkout():
 @app.route("/confirm_order", methods=["POST"]) 
 def confirm_orders(): 
     token = randint(100, 999) 
+    username = session["user"]
     register_no = session["register_no"]
     cursor.execute("SELECT * FROM cart") 
     cart_items = cursor.fetchall() 
     for item in cart_items: cursor.execute(""" INSERT INTO orders 
-    (register_no,token_no, product_name, price, quantity, total, order_status)
-    VALUES (%s, %s, %s, %s, %s, %s, %s) """,( 
+    (username,register_no,token_no, product_name, price, quantity, total, order_status)
+    VALUES (%s,%s, %s, %s, %s, %s, %s, %s) """,( 
+        username,
         register_no,
         token, 
         item["product_name"], 
@@ -381,6 +383,32 @@ def admin_reports():
 @app.route("/reports")
 def reports():
     return render_template("reports.html")
+
+@app.route("/customers")
+def customers():
+    cursor.execute("""select username,round(sum(total)*1.05,2)
+    as purchased,sum(quantity) as quantity from orders 
+    group by username """)
+    spendings=cursor.fetchall()
+
+    cursor.execute("select count(distinct username) as customers from orders")
+    customers=cursor.fetchone()
+    ["customers"]
+
+    cursor.execute("select sum(quantity) as product from orders")
+    product=cursor.fetchone()
+    ["product"]
+
+    cursor.execute("select round(sum(total)* 1.05, 2) as spent from orders")
+    spent=cursor.fetchone()
+    ["spent"]
+
+    cursor.execute("select count(*) as repeated from ( select username from orders group by username having count(*) > 1 ) as regular")
+    repeated=cursor.fetchone()
+    ["repeated"]
+
+    return render_template("/customers.html",spendings=spendings,customers=customers,product=product,spent=spent,repeated=repeated)
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)  

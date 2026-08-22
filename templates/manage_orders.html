@@ -4,70 +4,75 @@
         <title> Menu page </title>
     </head>
     <link rel="stylesheet" href="{{url_for('static',filename='manage_orders.css')}}">
-    <link rel="stylesheet" href="manage_orders.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <body>
-    
+
     <header>
     <div class="logo"> 
     <img src="{{url_for('static', filename='images/CB logo.png')}}" width="50">
     <a href="/" class="cb"><p>CanteenBite</p>
     </a>
     </div>
+    </header>
+
+<div class="layout">
+
+<aside class="side_bar">
     <nav>
     <a href="/admin_dashboard">Home</a>
     <a href="/manage_orders" class="menu">Manage</a>
     <a href="/edit_menu">Edit Menu</a>
     <a href="/admin_reports">View Reports</a>
     </nav>
-    </header>
+</aside>
+
+<main class="main-content">
 
     <h1> Recent Orders : </h1>
 
+    <div class="container">
 
-<div class="container">
+        <div class="heading">
+            <p>Date</p>
+            <p>Token</p>
+            <p>Product</p>
+            <p>Qty</p>
+            <p>Total</p>
+            <p>Status</p>
+            <p>Action</p>
+        </div>
 
-    <div class="heading">
-        <p>Date</p>
-        <p>Token</p>
-        <p>Product</p>
-        <p>Qty</p>
-        <p>Total</p>
-        <p>Status</p>
-        <p>Action</p>
+    {% for order in orders %}
+    <form action="/update_status" method="POST" class="order-row">
+
+        <input type="hidden" name="token" value="{{ order.token_no }}">
+        <div>{{ order.order_date }}</div>
+        <div>{{ order.token_no }}</div>
+        <div>{{ order.product_name }}</div>
+        <div>{{ order.quantity }}</div>
+        <div>₹{{ order.total }}</div>
+
+        <div>
+            <select name="status" class="select">
+                <option {% if order.order_status=="Preparing" %}selected{% endif %}>Preparing</option>
+                <option {% if order.order_status=="Ready" %}selected{% endif %}>Ready</option>
+                <option {% if order.order_status=="Picked Up" %}selected{% endif %}>Picked Up</option>
+                <option {% if order.order_status=="Out of Stock" %}selected{% endif %}>Out of Stock</option>
+            </select>
+        </div>
+
+        <div>
+            <button type="submit" class="update">Update</button>
+        </div>
+
+    </form>
+        {% endfor %}
+
     </div>
 
-{% for order in orders %}
-<form action="/update_status" method="POST" class="order-row">
+    <footer><p>Copyright © CanteenBite</p></footer>
 
-    <input type="hidden" name="token" value="{{ order.token_no }}">
-    <div>{{ order.order_date }}</div>
-    <div>{{ order.token_no }}</div>
-    <div>{{ order.product_name }}</div>
-    <div>{{ order.quantity }}</div>
-    <div>₹{{ order.total }}</div>
-
-    <div>
-        <select name="status" class="select">
-            <option {% if order.order_status=="Preparing" %}selected{% endif %}>Preparing</option>
-            <option {% if order.order_status=="Ready" %}selected{% endif %}>Ready</option>
-            <option {% if order.order_status=="Picked Up" %}selected{% endif %}>Picked Up</option>
-            <option {% if order.order_status=="Out of Stock" %}selected{% endif %}>Out of Stock</option>
-        </select>
-    </div>
-
-    <div>
-        <button type="submit" class="update">Update</button>
-    </div>
-
-</form>
-    {% endfor %}
-
+</main>
 </div>
-
-
-<footer><p>Copyright © CanteenBite</p></footer>
-
-
-
 </body>
 </html>

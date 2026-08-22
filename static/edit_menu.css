@@ -1,122 +1,300 @@
+/* =========================================================
+   CanteenBite Admin — Edit Menu (Dark Theme)
+   ========================================================= */
+
+:root {
+  --bg: #0b0f19;
+  --bg-soft: #0f1420;
+  --panel: #141a2a;
+  --panel-2: #171e30;
+  --border: #232b3d;
+  --orange: #f5820a;
+  --orange-soft: rgba(245, 130, 10, 0.14);
+  --text: #eef1f8;
+  --text-dim: #9aa3b8;
+  --text-faint: #6b7386;
+  --green: #22c55e;
+  --red: #ef4444;
+  --blue: #3b82f6;
+  --radius: 14px;
+  --radius-sm: 10px;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+}
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial;
+  box-sizing: border-box;
 }
 
-h1 {
-    color: white;
-    font-weight: bolder;
-    margin-top: 40px;
-    margin-bottom: -10px;
-    text-align: left;
-    margin-left: 30px;
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
 }
 
-.cb {
-    color: white;
-    cursor: pointer;
-    text-decoration: none;
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-.cb:hover {
-    color: #e68900;
-}
-
-body {
-    height: auto;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    background: linear-gradient(135deg, #e68900 50%, #2d2d2d 50%);
-}
-
+/* ---------------------------------------------------------
+   Header
+--------------------------------------------------------- */
 header {
-    background: #2d2d2d;
-    color: white;
-    display: flex;
-    height: 70px;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 50px;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
 }
-
 
 .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-nav a {
-    text-align: center;
-    color: white;
-    text-decoration: none;
-    margin-left: 80px;
-    font-weight: bold;
+.logo img {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
-nav a:hover {
-    color: orange;
+.logo a.cb p {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  color: var(--orange);
 }
 
-.container {
-    margin-left: 25px;
-    width: 95%;
-    background: white;
-    height: 500px;
-    overflow-y: scroll;
-    margin-bottom: 20px;
-    border-radius: 20px;
+/* ---------------------------------------------------------
+   Layout shell — sidebar + content
+--------------------------------------------------------- */
+.layout {
+  display: flex;
+  align-items: flex-start;
+  min-height: calc(100vh - 76px);
 }
 
-.row-head,.row {
-    display: grid;
-    grid-template-columns: 1.5fr 1.5fr 1.5fr 1fr 1fr ;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #ddd;
+.side_bar {
+  flex: 0 0 260px;
+  width: 260px;
+  background: var(--bg-soft);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  min-height: calc(100vh - 76px);
+  position: sticky;
+  top: 76px;
+  align-self: flex-start;
+}
+
+.side_bar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.side_bar nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 16px;
+  border-radius: var(--radius-sm);
+  color: var(--text-dim);
+  font-size: 15px;
+  font-weight: 500;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.side_bar nav a:hover {
+  background: var(--panel);
+  color: var(--text);
+}
+
+.side_bar nav a.menu {
+  background: var(--orange-soft);
+  color: var(--orange);
+  border: 1px solid rgba(245, 130, 10, 0.35);
+  font-weight: 700;
+}
+
+.main-content {
+  flex: 1 1 0%;
+  min-width: 0;
+}
+
+/* ---------------------------------------------------------
+   Page heading + add button
+--------------------------------------------------------- */
+.page-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 32px 32px 20px;
+}
+
+.page-head h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
 }
 
 .submit {
-    background: #e68800;
-    margin-right: -1050px;
-    margin-top: -30px;
-    width: 120px;
-    height: 40px;
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s ease;
+  padding: 11px 20px;
+  background: var(--orange);
+  border: none;
+  border-radius: var(--radius-sm);
+  color: #1a1206;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 0.2s ease, transform 0.15s ease;
 }
 
 .submit:hover {
-    transform: scale(1.05);
-    background: #e68900;
+  filter: brightness(1.08);
+  transform: translateY(-1px);
 }
 
-.edit,.delete{
-    height: 35px;
-    width: 35px;
-    cursor: pointer;
-    border: none;
-    border-radius: 8px;
-    color: #2d2d2d;
-    text-align: center;
+/* ---------------------------------------------------------
+   Menu table
+--------------------------------------------------------- */
+.container {
+  margin: 0 32px 40px;
+  height: 650px;
+  overflow-y: scroll;
 }
 
-.imgg{
-    border-radius: 8px;
-    border: none;
+.row-head {
+  display: grid;
+  grid-template-columns: 0.8fr 2fr 1.4fr 1fr 1.2fr;
+  align-items: center;
+  padding: 14px 22px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius) var(--radius) 0 0;
+  color: var(--text-faint);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
 }
+
+.row-head p {
+  margin: 0;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 0.8fr 2fr 1.4fr 1fr 1.2fr;
+  align-items: center;
+  padding: 12px 22px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-top: none;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.row:last-of-type {
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+
+.row:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.imgg {
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.edit,
+.delete {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.edit:hover {
+  border-color: var(--orange);
+  background: var(--orange-soft);
+  transform: translateY(-1px);
+}
+
+.delete:hover {
+  border-color: var(--red);
+  background: rgba(239, 68, 68, 0.14);
+  transform: translateY(-1px);
+}
+
+/* ---------------------------------------------------------
+   Footer
+--------------------------------------------------------- */
 footer {
-    size: 8px;
-    width: 100%;
-    height: 50px;
-    background-color: #2d2d2d;
-    color: white;
+  text-align: center;
+  padding: 20px;
+  color: var(--text-faint);
+  font-size: 13px;
+  border-top: 1px solid var(--border);
+}
+
+footer p {
+  margin: 0;
+}
+
+/* ---------------------------------------------------------
+   Responsive
+--------------------------------------------------------- */
+@media (max-width: 900px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .side_bar {
+    display: none;
+  }
+
+  .page-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .row-head {
+    display: none;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    border-radius: var(--radius);
+    margin-bottom: 14px;
+    padding: 16px;
+  }
+
+  .row:last-of-type {
+    border-radius: var(--radius);
+  }
 }
