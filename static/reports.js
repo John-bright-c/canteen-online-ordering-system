@@ -72,15 +72,32 @@ new Chart(salesCtx, {
 });
 
 // ================= ORDERS BY STATUS =================
+const preparing = statusData.find(item => item.Order_status === "Preparing");
+const ready = statusData.find(item => item.Order_status === "Ready");
+const completed = statusData.find(item => item.Order_status === "Completed");
+
+document.getElementById("preparingCount").textContent =
+    preparing ? preparing.count : 0;
+
+document.getElementById("readyCount").textContent =
+    ready ? ready.count : 0;
+
+document.getElementById("completedCount").textContent =
+    completed ? completed.count : 0;
+
+const totalOrders = statusData.reduce((total, item) => total + item.count, 0);
+
+document.getElementById("totalOrders").textContent = totalOrders;
+
 const statusCtx = document.getElementById("statusChart");
 
 new Chart(statusCtx, {
   type: "doughnut",
   data: {
-    labels: ["New", "Preparing", "Ready", "Completed"],
+    labels: statusData.map(item => item.order_status),
     datasets: [{
-      data: [25, 48, 67, 105],
-      backgroundColor: ["#f23547", "#ff8900", "#2d79ec", "#45c63d"],
+      data: statusData.map(item => item.count),
+      backgroundColor: ["#f23547", "#2d79ec", "#45c63d"],
       borderWidth: 0,
       hoverOffset: 3
     }]

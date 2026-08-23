@@ -24,10 +24,9 @@
         <aside class="side_bar">
             <nav>
                 <a href="/admin_dashboard">Home</a>
-                <a href="/manage_orders">Manage</a>
+                <a href="/manage_orders">Manage Orders</a>
                 <a href="/edit_menu">Edit Menu</a>
                 <a href="/admin_reports">View Reports</a>
-                <a href="/reports">Reports</a>
                 <a href="/customers" class="menu">Customers</a>
             </nav>
         </aside>
@@ -87,7 +86,7 @@
                     <div class="cus-row">
                         <div>{{ order.username }}</div>
                         <div class="num">{{ order.quantity }}</div>
-                        <div class="num">₹{{ order.purchased }}</div>
+                        <div class="num">₹ {{ order.purchased }}</div>
                     </div>
                     {% endfor %}
                 </div>
@@ -103,7 +102,7 @@
                 {% for order in top %}
                 <div class="rr">                
                 <div>{{ order["username"] }}</div>
-                <div>₹{{ order["purchased"] }}</div>
+                <div>₹ {{ order["purchased"] }}</div>
                 <div>Products :{{ order["quantity"] }}</div>
                 </div>
                 {% endfor %}

@@ -1,55 +1,65 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title>Add Product</title>
     </head>
 
     <link rel="stylesheet" href="{{url_for('static',filename='admin_reports.css')}}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js"> 
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"> 
     <body>
+
     <header>
     <div class="logo">  
     <img src="{{url_for('static', filename='images/CB logo.png')}}" width="50">
     <a href="/admin_dashboard" class="cb"><p>CanteenBite</p>
     </a>
     </div>
-    <nav>
-    <a href="/admin_dashboard">Home</a>
-    <a href="/manage_orders" class="menu">Manage</a>
-    <a href="/edit_menu">Edit Menu</a>
-    <a href="/admin_reports">View Reports</a>
-    </nav>
     </header>
+
+<div class="layout">
+
+<aside class="side_bar">
+    <nav>
+        <a href="/admin_dashboard">Home</a>
+        <a href="/manage_orders">Manage Orders</a>
+        <a href="/edit_menu">Edit Menu</a>
+        <a href="/admin_reports" class="menu">View Reports</a>
+        <a href="/customers">Customers</a>
+    </nav>
+</aside>
+
+<main class="main-content">
 
 <div class="top">
     <h1><span>📋</span> Reports </h1><br>
     <p>Track your Canteen performance and explore detailed insights.</p>
 </div>
 
-        <div class="Container">
-        <div class="card">
-            <i class="fa-solid fa-bag-shopping"></i>
-            <h3>Total Orders</h3>
-           <span>{{ total_orders.total_orders }}</span>
-        </div>
-        <div class="card">
-            <i class="fa-solid fa-indian-rupee-sign"></i>
-            <h3>Total Revenue</h3>
-            <span>₹ {{ total_revenue.total_revenue }}</span>
-        </div>
-        <div class="card">
-            <i class="fa-solid fa-chart-line"></i>
-            <h3>Average Value</h3>
-            <span>₹ {{ avg_revenue.avg_revenue }}</span>
-        </div>
-        <div class="card">
-            <i class="fa-solid fa-cart-shopping"></i>
-            <h3>Items Sold</h3>
-            <span>{{ items_sold.items_sold }}</span>
-        </div>
-
+<div class="Container">
+    <div class="card">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <h3>Total Orders</h3>
+       <span>{{ total_orders.total_orders }}</span>
     </div>
+    <div class="card">
+        <i class="fa-solid fa-indian-rupee-sign"></i>
+        <h3>Total Revenue</h3>
+        <span>₹ {{ total_revenue.total_revenue }}</span>
+    </div>
+    <div class="card">
+        <i class="fa-solid fa-chart-line"></i>
+        <h3>Average Value</h3>
+        <span>₹ {{ avg_revenue.avg_revenue }}</span>
+    </div>
+    <div class="card">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <h3>Items Sold</h3>
+        <span>{{ items_sold.items_sold }}</span>
+    </div>
+</div>
+
+<div class="reports_wrap">
+
 
 <div class="container2">    
 <div class="Recent_Orders"> 
@@ -61,61 +71,100 @@
         <p>Status</p>
     </div>
 
+    {% for order in recent_orders %}
     <div class="row">
-        {% for order in recent_orders %}
         <span>{{ order.order_date }}</span>
         <span>{{ order.total_orders }}</span>
-        <span>{{ order.revenue }}</span>
+        <span>₹{{ order.revenue }}</span>
         <span>{{ order.status }}</span>
-        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+</div>
+
+<div class="top_selling">
+    <p>⭐ Top Selling Items</p>
+    <div class="sell_head">
+        <div>Rank</div>
+        <div>Item</div>
+        <div>Sold</div>
+        <div>Revenue</div>
+    </div>  
+    
+    {% for sold in top_sell %}
+    <div class="sell_row">
+        <div>{{ sold["rank"] }}</div>
+        <div>{{ sold["item"] }}</div>
+        <div>{{ sold["qty"] }}</div>
+        <div>₹{{ sold["revenue"] }}</div>
+    </div>
+    {% endfor %}
+</div>
+
+
+</div>
+
+<section class="charts-grid">
+
+    <div class="panel sales-panel">
+        <div class="panel-header">
+          <h3><i class="fa-solid fa-chart-line"></i> Sales Overview</h3>
+          <button class="mini-select">This Week <i class="fa-solid fa-chevron-down"></i></button>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="salesChart"></canvas>
+        </div>
+    </div>
+
+    <div class="panel status-panel">
+        <div class="panel-header">
+          <h3><i class="fa-regular fa-clock"></i> Orders by Status</h3>
+        </div>
+
+        <div class="status-content">
+          <div class="donut-wrap">
+            <canvas id="statusChart"></canvas>
+            <div class="donut-center">
+             <strong id="totalOrders">0</strong>>
+              <span>Total Orders</span>
+            </div>
+          </div>
+
+          <div class="legend">
+    <div>
+        <span class="dot orange-dot"></span>
+        <label>Preparing</label>
+        <b id="preparingCount">0</b>
+    </div>
+
+    <div>
+        <span class="dot blue-dot"></span>
+        <label>Ready</label>
+        <b id="readyCount">0</b>
+    </div>
+
+    <div>
+        <span class="dot green-dot"></span>
+        <label>Completed</label>
+        <b id="completedCount">0</b>
     </div>
 </div>
-<div class="chart">
-    <h2>Chart</h2>
-    <canvas id="myChart"></canvas>
+        </div>
+    </div>
+
+</section>
+
+<footer>Copyright © CanteenBite</footer>
+
+</main>
 </div>
-</div>
 
-
-
-
-    <footer>Copyright © CanteenBite</footer>
-</body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    const ctx = document.getElementById('myChart')
-const data = {
-  labels: [
-    {% for row in status_data %}
-        "{{ row.order_status }}"{% if not loop.last %},{% endif %}
-        {% endfor %}
-  ],
-  datasets: [
-    {
-    label: 'My First Dataset',
-    data: [
-        {% for row in status_data %}
-            {{ row.count }}{% if not loop.last %},{% endif %}
-        {% endfor %}
-    ],
-    backgroundColor: [
-      'rgb(255, 99, 132)',
-      'rgb(54, 162, 235)',
-      'rgb(255, 205, 86)'
-      'rgb(75,192,120)'
-    ],
-    hoverOffset: 4}]
-};
 
-const config = {
-  type: 'doughnut',
-  data: data,
-};
-new Chart(ctx, config);
-module.exports = {
-  actions: [],
-  config: config,
-};
+<script>
+    const statusData = {{ stats_data | tojson }};
 </script>
 
+<script src="{{url_for('static',filename='reports.js')}}"></script>
+</body>
 </html>

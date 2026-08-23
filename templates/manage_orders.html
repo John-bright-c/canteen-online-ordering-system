@@ -21,9 +21,10 @@
 <aside class="side_bar">
     <nav>
     <a href="/admin_dashboard">Home</a>
-    <a href="/manage_orders" class="menu">Manage</a>
+    <a href="/manage_orders" class="menu">Manage Orders</a>
     <a href="/edit_menu">Edit Menu</a>
     <a href="/admin_reports">View Reports</a>
+    <a href="/customers">Customers</a>
     </nav>
 </aside>
 
@@ -75,17 +76,5 @@
 
 </main>
 </div>
-<script>
-    function updatetime(){
-        const now = new Date();
-        document.getElementById("current-time").textContent = now.toLocaleTimeString("en-IN",{
-        hour : "2-digit",
-        minute : "2-digit",
-        second : "2-digit"
-    });
-    }
-    updatetime();
-    setInterval(updatetime, 1000);
-</script>
 </body>
 </html>

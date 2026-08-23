@@ -15,7 +15,7 @@
     </a>
     </div>
     <div class="day" data-aos="fade-in" data-aos-duration="1000" easing="ease-in">
-    📅: {{ day }}, {{ date }}  -  ⏱️: 
+    📅: {{ day }}, {{ date }}  -  ⏱️:
     <span id="current-time"></span>  
     </div>  
     </header>
@@ -28,10 +28,9 @@
 <aside class="side_bar">
     <nav>
     <a href="/admin_dashboard" class="menu">Home</a>
-    <a href="/manage_orders">Manage</a>
+    <a href="/manage_orders">Manage Orders</a>
     <a href="/edit_menu">Edit Menu</a>
     <a href="/admin_reports">View Reports</a>
-    <a href="/reports">Reports</a>
     <a href="/customers">Customers</a>
     </nav>
 </aside>
@@ -67,7 +66,7 @@
 
 <div class="total-revenue">
     <i class="fa-solid fa-indian-rupee-sign"></i>
-   <span class="no">₹{{ revenue.revenue }} </span>    
+   <span class="no">₹ {{ revenue.revenue }} </span>    
     <p>Total Revenue</p>
 </div>
 </div>
@@ -93,11 +92,10 @@
         <div>{{ order.token_no }}</div>
         <div>{{ order.product_name }}</div>
         <div>{{ order.quantity }}</div>
-        <div>₹{{ order.total }}</div>
+        <div>₹ {{ order.total }}</div>
         <div class="status">{{ order.order_status }}</div>
     </div>
     {% endfor %}
-</div>
 </div>
 </div>
 

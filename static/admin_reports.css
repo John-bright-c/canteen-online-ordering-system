@@ -1,160 +1,515 @@
+/* =========================================================
+   CanteenBite Admin — Reports (Dark Theme)
+   ========================================================= */
+
+:root {
+  --bg: #0b0f19;
+  --bg-soft: #0f1420;
+  --panel: #141a2a;
+  --panel-2: #171e30;
+  --border: #232b3d;
+  --orange: #f5820a;
+  --orange-soft: rgba(245, 130, 10, 0.14);
+  --text: #eef1f8;
+  --text-dim: #9aa3b8;
+  --text-faint: #6b7386;
+  --green: #22c55e;
+  --red: #ef4444;
+  --blue: #3b82f6;
+  --purple: #a855f7;
+  --radius: 14px;
+  --radius-sm: 10px;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+}
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial;
+  box-sizing: border-box;
 }
 
-
-.cb {
-    color: white;
-    cursor: pointer;
-    text-decoration: none;
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
 }
 
-.cb:hover {
-    color: #e68900;
-}
-footer{
-    size: 8px;
-    width:100%;
-    height: 50px;
-    background-color: #2d2d2d;
-    color: white;
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-body {
-    height: auto;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    background-image: linear-gradient(120deg,#e69800 0%,#e68900 100%);
-}
-
+/* ---------------------------------------------------------
+   Header
+--------------------------------------------------------- */
 header {
-    background: #2d2d2d;
-    color: white;
-    display: flex;
-    height: 70px;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 50px;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
 }
-
 
 .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-nav a {
-    text-align: center;
-    color: white;
-    text-decoration: none;
-    margin-left: 80px;
-    font-weight: bold;
+.logo img {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
-nav a:hover {
-    color: orange;
+.logo a.cb p {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  color: var(--orange);
 }
 
-.top{
-    color: white;
-    margin-left: 20px;
-    margin-top: 40px;
-    text-align: left;
+/* ---------------------------------------------------------
+   Layout shell — sidebar + content
+--------------------------------------------------------- */
+.layout {
+  display: flex;
+  align-items: flex-start;
+  min-height: calc(100vh - 76px);
 }
-.top h1{
-    font-weight: bolder;
+
+.side_bar {
+  flex: 0 0 260px;
+  width: 260px;
+  background: var(--bg-soft);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  min-height: calc(100vh - 76px);
+  position: sticky;
+  top: 76px;
+  align-self: flex-start;
 }
-.top p{
-    margin-top: -10px;
+
+.side_bar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.side_bar nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 16px;
+  border-radius: var(--radius-sm);
+  color: var(--text-dim);
+  font-size: 15px;
+  font-weight: 500;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.side_bar nav a:hover {
+  background: var(--panel);
+  color: var(--text);
+}
+
+.side_bar nav a.menu {
+  background: var(--orange-soft);
+  color: var(--orange);
+  border: 1px solid rgba(245, 130, 10, 0.35);
+  font-weight: 700;
+}
+
+.main-content {
+  flex: 1 1 0%;
+  min-width: 0;
+}
+
+/* ---------------------------------------------------------
+   Page heading
+--------------------------------------------------------- */
+.top {
+  padding: 28px 32px 4px;
+}
+
+.top h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.top p {
+  margin-top: -20px;
+  color: var(--text-dim);
+  font-size: 14px;
+}
+
+/* ---------------------------------------------------------
+   Stat cards
+--------------------------------------------------------- */
+.Container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px 32px 24px;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card i {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  font-size: 18px;
+  background: var(--orange-soft);
+  color: var(--orange);
+  margin-bottom: 4px;
+}
+
+.card:nth-child(2) i {
+  background: rgba(34, 197, 94, 0.18);
+  color: var(--green);
+}
+
+.card:nth-child(3) i {
+  background: rgba(59, 130, 246, 0.18);
+  color: var(--blue);
+}
+
+.card:nth-child(4) i {
+  background: rgba(168, 85, 247, 0.18);
+  color: var(--purple);
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dim);
+}
+
+.card span {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+/* ---------------------------------------------------------
+   Recent orders + Top selling — side by side
+--------------------------------------------------------- */
+.reports_wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 0 32px 32px;
+}
+
+.container2 {
+  flex: 1;
+  min-width: 0;
+}
+
+.Recent_Orders {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  height: 385px;
+  overflow-y: scroll;
+}
+
+.Recent_Orders h2 {
+  margin: 0 0 16px;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.Recent_Orders .head,
+.Recent_Orders .row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr;
+  align-items: center;
+  padding: 12px 16px;
+}
+
+.Recent_Orders .head {
+  background: var(--panel-2);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  color: var(--text-faint);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+}
+
+.Recent_Orders .head p {
+  margin: 0;
+} 
+
+.Recent_Orders .row {
+  font-size: 14px;
+  border: 1px solid var(--border);
+  border-top: none;
+}
+
+.Recent_Orders .row:last-child {
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+}
+
+.Recent_Orders .row:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* ---------------------------------------------------------
+   Top selling items
+--------------------------------------------------------- */
+.top_selling {
+  flex: 0 0 350px;
+  min-width: 0;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+}
+
+.top_selling > p {
+  margin: 0 0 16px;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.sell_head,
+.sell_row {
+  display: grid;
+  grid-template-columns: 0.6fr 2fr 1fr 1fr;
+  align-items: center;
+  padding: 12px 16px;
+}
+
+.sell_head {
+  background: var(--panel-2);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  color: var(--text-faint);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+}
+
+.sell_row {
+  font-size: 14px;
+  border: 1px solid var(--border);
+  border-top: none;
+}
+
+.sell_row:last-child {
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+}
+
+.sell_row:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* ---------------------------------------------------------
+   Charts grid
+--------------------------------------------------------- */
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 20px;
+  margin: 0 32px 32px;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.panel-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.panel-header h3 i {
+  color: var(--orange);
+}
+
+.mini-select {
+  padding: 8px 14px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-dim);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mini-select:hover {
+  border-color: var(--orange);
+  color: var(--text);
+}
+
+.chart-wrap {
+  position: relative;
+  height: 280px;
+}
+
+.status-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.donut-wrap {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  flex-shrink: 0;
+}
+
+.donut-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+}
+
+.donut-center strong {
+  display: block;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.donut-center span {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.legend > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.legend label {
+  flex: 1;
+  color: var(--text-dim);
+}
+
+.legend b {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.legend small {
+  color: var(--text-faint);
+  font-weight: 500;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.red-dot { background: var(--red); }
+.orange-dot { background: var(--orange); }
+.blue-dot { background: var(--blue); }
+.green-dot { background: var(--green); }
+
+/* ---------------------------------------------------------
+   Footer
+--------------------------------------------------------- */
+footer {
+  text-align: center;
+  padding: 20px;
+  color: var(--text-faint);
+  font-size: 13px;
+  border-top: 1px solid var(--border);
+}
+
+/* ---------------------------------------------------------
+   Responsive
+--------------------------------------------------------- */
+@media (max-width: 1100px) {
+  .Container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .reports_wrap {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 800px) {
+  .layout {
+    flex-direction: column;
+  }
+  .side_bar {
+    display: none;
+  }
+  .Container {
+    grid-template-columns: 1fr;
+  }
+  .Recent_Orders .head,
+  .Recent_Orders .row,
+  .sell_head,
+  .sell_row {
+    grid-template-columns: repeat(2, 1fr);
     font-size: 12px;
-}
-.container{
-    color: #e68900;
-    text-align: left;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-}
-.card{
-    width: 260px;
-    height: 130px;
-    padding: 10px;
-    background: white;
-    border-radius: 8px;
-    border: skyblue solid 2px;
-    margin: 30px;
-}
-.card h3,.card span{
-    margin-left: 80px;
-    margin-top: -20px;
-}
-
-.card span{
-    margin-top: 20px;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.card i{
-    color: #e69800;
-    background-color: rgba(172, 255, 28, 0.2);
-    width: 60px;
-    border: #e68900 solid 1px;
-    text-align: center;
-    padding: 10px;
-    font-size: 30px;
-    height: 50px;
-    border-radius: 8px;
-    transform: translateY(23px);
-    
-}
-.head,.row{
-    margin-left: 50px;
-    text-align: left;
-    margin-top: 10px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-}
-.head{
-    margin-top: 30px;
-    font-weight: bold;
-    font-size: 16px;
-}
-.row span{
-    margin-bottom: 15px;
-    border-bottom: 1px solid #ddd;
-    margin-top: 20px;
-}
-
-.recent_orders{
-    width: 650px;
-    height: 320px;
-    background: white;
-    margin: 20px;
-    border-radius: 12px;
-    border: 2px solid skyblue;
-    overflow-y: scroll;
-}
-.recent_orders h2{
-    text-align: left;
-    margin-left: 30px;
-    margin-bottom: 20px;
-}
-.chart{
-    width: 300px;
-    height: 328px;
-    background: white;
-    border-radius: 12px;
-    margin: 12px;
-    border: 2px skyblue solid;
-}
-.container2{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
+  }
+  .status-content {
+    flex-direction: column;
+  }
 }

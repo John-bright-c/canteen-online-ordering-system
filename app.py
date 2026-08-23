@@ -378,7 +378,15 @@ def admin_reports():
     cursor.execute("""select order_status,count(distinct token_no) as count from orders group by order_status""")
     status_data=cursor.fetchall()
 
-    return render_template("/admin_reports.html",recent_orders=recent_orders,total_orders=total_orders,total_revenue=total_revenue,avg_revenue=avg_revenue,items_sold=items_sold,status_data=status_data)
+    cursor.execute ("""select rank() over (order by sum(quantity) desc) as 'rank', product_name as item,sum(quantity) as qty,round(sum(total)*1.05,2) as revenue from orders group by product_name order by qty desc limit 6""")
+    top_sell=cursor.fetchall()
+
+    cursor.execute("""select order_status,count(*) 
+    as count from orders where order_status <> 
+    'Out of Stock' group by order_status""")
+    stats_data=cursor.fetchall()
+
+    return render_template("/admin_reports.html",stats_data=stats_data,top_sell=top_sell,recent_orders=recent_orders,total_orders=total_orders,total_revenue=total_revenue,avg_revenue=avg_revenue,items_sold=items_sold,status_data=status_data)
 
 @app.route("/reports")
 def reports():
