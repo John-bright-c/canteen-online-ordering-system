@@ -12,10 +12,11 @@
     <header>
         <div class="logo">
             <img src="{{url_for('static', filename='images/CB logo.png')}}" width="50">
-            <a href="/" class="cb">
+            <a href="/admin_dashboard" class="cb">
                 <p>CanteenBite</p>
             </a>
         </div>
+        <span id="current-time"></span>
     </header>
 
     <div class="layout">
@@ -23,9 +24,11 @@
         <aside class="side_bar">
             <nav>
                 <a href="/admin_dashboard">Home</a>
-                <a href="/manage_orders" class="menu">Manage</a>
+                <a href="/manage_orders">Manage</a>
                 <a href="/edit_menu">Edit Menu</a>
                 <a href="/admin_reports">View Reports</a>
+                <a href="/reports">Reports</a>
+                <a href="/customers" class="menu">Customers</a>
             </nav>
         </aside>
 
@@ -66,7 +69,7 @@
                 </div>
             </div>
 
-
+<div class="container_wrap">
             <div class="container2" data-aos="fade-up" data-aos-duration="2000" easing="ease-in">
                 <p class="customer"><strong>
                         <i class="fa-solid fa-people-line"></i></strong>
@@ -90,15 +93,38 @@
                 </div>
             </div>
             
-            <div class="Top-cus">
-                <p>Top Customer</p>
+            <div class="top-cus">
+                <div class="title">
+                <h3>🏆 Top Customers</h3>
                 <p> Most active customers </p>
-                {% for order in spendings %}
-                <div>{{ order.username }}</div>
-                <div>{{ order.quantity }}</div>
-                <div>₹{{ order.purchased }}</div>
+                </div>
+
+                <div class="wrap">
+                {% for order in top %}
+                <div class="rr">                
+                <div>{{ order["username"] }}</div>
+                <div>₹{{ order["purchased"] }}</div>
+                <div>Products :{{ order["quantity"] }}</div>
+                </div>
                 {% endfor %}
+                </div>
             </div>
-    
+    </div>
         </main>
     </div>
+
+<script>
+    function updatetime(){
+        const now = new Date();
+        document.getElementById("current-time").textContent = now.toLocaleTimeString("en-IN",{
+        hour : "2-digit",
+        minute : "2-digit",
+        second : "2-digit"
+    });
+    }
+    updatetime();
+    setInterval(updatetime, 1000);
+</script>
+
+</body>
+</html>

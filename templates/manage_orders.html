@@ -10,9 +10,10 @@
     <header>
     <div class="logo"> 
     <img src="{{url_for('static', filename='images/CB logo.png')}}" width="50">
-    <a href="/" class="cb"><p>CanteenBite</p>
+    <a href="/admin_dashboard" class="cb"><p>CanteenBite</p>
     </a>
     </div>
+    <span id="current-time"></span>
     </header>
 
 <div class="layout">
@@ -74,5 +75,17 @@
 
 </main>
 </div>
+<script>
+    function updatetime(){
+        const now = new Date();
+        document.getElementById("current-time").textContent = now.toLocaleTimeString("en-IN",{
+        hour : "2-digit",
+        minute : "2-digit",
+        second : "2-digit"
+    });
+    }
+    updatetime();
+    setInterval(updatetime, 1000);
+</script>
 </body>
 </html>

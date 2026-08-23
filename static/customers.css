@@ -133,7 +133,7 @@ header {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   height: 340px;
-  width: 650px;
+  width: 800px;
   overflow-y: scroll;
 }
 
@@ -148,14 +148,14 @@ header {
 .container .head{
   background: var(--panel-2);
   color: var(--text-faint);
-  font-size: 12px;
+  font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   font-weight: 700;
 }
 
 .cus-row{
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text);
   border-top: 1px solid var(--border);
 }
@@ -166,7 +166,7 @@ header {
 .container2{
   margin: 20px;
   background: var(--panel);
-  width: 700px;
+  width: 850px;
   border-radius: var(--radius);
   padding: 30px;
   height: fit-content;
@@ -183,4 +183,76 @@ header {
 }
 .sub{
   margin-left: 0px;
+}
+
+.top-cus{
+  margin: 20px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  height: 480px;
+  width: 380px;
+  color: var(--text);
+  margin-left: 20px;
+  overflow-y: scroll;
+  padding: 20px;
+}
+.top-cus .rr{
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  align-items: center;
+  padding: 14px 22px;
+  border-bottom: 1px solid var(--border);
+}
+.top-cus .rr:hover{
+  background: #141a2a;
+
+}
+.title p,.title h3{
+  margin-left: 20px;
+}
+.title h3{
+  font-weight: 700;
+}
+.title p{
+  margin-top: -14px;
+  margin-left: 50px;
+  font-size: 12px;
+}
+.wrap{
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: var(--panel-2);
+}
+.container_wrap{
+  display: flex;
+}
+
+.total,.orders,.spent{
+  height: 200px;
+  width: 250px;
+  padding: 0 12px;
+  background: var(--panel-2);
+  border-radius: var(--radius);
+  border: 2px solid var(--border);
+}
+
+.total p,.orders p,.spent p{
+  margin-left: 35%;
+  color: var(--text);
+}
+.total span,.orders span,.spent span{
+  margin-left: 35%;
+  font-size: 24px;
+  font-weight: bold;
+}
+.total i,.orders i,.spent i{
+  transform: translateY(70px);
+  font-size: 30px;
+  margin: 10px;
+  width: 50px;
+  text-align: center;
+  border: 2px solid var(--border);
+  padding: 5px;
+  border-radius: var(--radius-sm);
 }

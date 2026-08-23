@@ -15,8 +15,9 @@
     </a>
     </div>
     <div class="day" data-aos="fade-in" data-aos-duration="1000" easing="ease-in">
-    📅: {{ day }}, {{ date }}
-    </div>    
+    📅: {{ day }}, {{ date }}  -  ⏱️: 
+    <span id="current-time"></span>  
+    </div>  
     </header>
 
 
@@ -162,5 +163,17 @@
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
     AOS.init();
+</script>
+<script>
+    function updatetime(){
+        const now = new Date();
+        document.getElementById("current-time").textContent = now.toLocaleTimeString("en-IN",{
+        hour : "2-digit",
+        minute : "2-digit",
+        second : "2-digit"
+    });
+    }
+    updatetime();
+    setInterval(updatetime, 1000);
 </script>
 </html>

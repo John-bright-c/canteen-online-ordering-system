@@ -388,7 +388,7 @@ def reports():
 def customers():
     cursor.execute("""select username,round(sum(total)*1.05,2)
     as purchased,sum(quantity) as quantity from orders 
-    group by username """)
+    group by username""")
     spendings=cursor.fetchall()
 
     cursor.execute("select count(distinct username) as customers from orders")
@@ -407,7 +407,12 @@ def customers():
     repeated=cursor.fetchone()
     ["repeated"]
 
-    return render_template("/customers.html",spendings=spendings,customers=customers,product=product,spent=spent,repeated=repeated)
+    cursor.execute("""select username,round(sum(total)*1.05,2)
+    as purchased,sum(quantity) as quantity from orders 
+    group by username order by purchased desc limit 5""")
+    top=cursor.fetchall()
+
+    return render_template("/customers.html",top=top,spendings=spendings,customers=customers,product=product,spent=spent,repeated=repeated)
 
 
 if __name__ == "__main__":
