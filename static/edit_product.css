@@ -1,5 +1,24 @@
+:root {
+  --bg: #0b0f19;
+  --bg-soft: #0f1420;
+  --panel: #141a2a;
+  --panel-2: #171e30;
+  --border: #232b3d;
+  --orange: #f5820a;
+  --orange-soft: rgba(245, 130, 10, 0.14);
+  --text: #eef1f8;
+  --text-dim: #9aa3b8;
+  --text-faint: #6b7386;
+  --green: #22c55e;
+  --red: #ef4444;
+  --blue: #3b82f6;
+  --radius: 14px;
+  --radius-sm: 10px;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+}
 
 h1{
+    color: var(--text);
     text-align: left;
     margin-left: 30px;
 }
@@ -17,12 +36,13 @@ body{
     height: auto;
     margin: 0;
     padding: 0;
-    background: white;
+    background: var(--bg-soft);
 }
 
 header{
-    background:#2d2d2d;
+    background:var(--bg);
     color:white;
+    border-bottom: 2px solid var(--border);
     display:flex;
     height: 30px;
     justify-content:space-between;
@@ -50,18 +70,23 @@ nav a:hover{
 
 
 footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 50px;
-    text-align: center;
     size: 8px;
     width:100%;
     height: 50px;
-    background-color: #2d2d2d;
-    color: white;
+    background:var(--bg);
+    color:white;
+    border-top: 2px solid var(--border);
 }
 
 .container1{
-    background: white;
+    background: var(--panel);
+    border: 2px solid var(--border);
     margin: 20px;
+    color: var(--text);
     padding: 20px;
     border-radius: 15px;
     width: 550px;
@@ -76,8 +101,10 @@ footer{
 .container2{
     display: grid;
     grid-template-rows: 1fr 1fr;
-    background: white;
+    background: var(--panel);
     margin: 20px;
+    border: 2px solid var(--panel);
+    color: white;
     padding: 20px;
     border-radius: 15px;
     width: 550px;

@@ -1,5 +1,25 @@
+:root {
+  --bg: #0b0f19;
+  --bg-soft: #0f1420;
+  --panel: #141a2a;
+  --panel-2: #171e30;
+  --border: #232b3d;
+  --orange: #f5820a;
+  --orange-soft: rgba(245, 130, 10, 0.14);
+  --text: #eef1f8;
+  --text-dim: #9aa3b8;
+  --text-faint: #6b7386;
+  --green: #22c55e;
+  --red: #ef4444;
+  --blue: #3b82f6;
+  --radius: 14px;
+  --radius-sm: 10px;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+}
+
 
 h1{
+    color: var(--text);
     text-align: left;
     margin-left: 30px;
 }
@@ -17,11 +37,12 @@ body{
     height: auto;
     margin: 0;
     padding: 0;
-    background: white;
+    background: var(--bg-soft);
 }
 
 header{
-    background:#2d2d2d;
+    background:var(--bg-soft);
+    border-bottom: 2px solid var(--border);
     color:white;
     display:flex;
     height: 30px;
@@ -52,19 +73,23 @@ nav a:hover{
 footer{
     text-align: center;
     size: 8px;
+    margin-top: 10px;
     width:100%;
     height: 50px;
-    background-color: #2d2d2d;
+    background:var(--bg-soft);
+    border-top: 2px solid var(--border);
     color: white;
 }
 
 .container1{
-    background: white;
+    background: var(--panel);
     margin: 20px;
     padding: 20px;
+    color: var(--text);
+    border: 2px solid var(--border);
     border-radius: 15px;
     width: 550px;
-    height: 250px;
+    height: 350px;
     box-shadow:0 8px 20px black;
 }
 .container1 h2{
@@ -73,22 +98,24 @@ footer{
     color: #e68900;
 }
 .container2{
-    background: white;
+    background: var(--panel-2);
     margin: 20px;
     padding: 20px;
     border-radius: 15px;
     width: 550px;
-    height: 150px;
+    height: 350px;
+    border: 2px solid var(--border);
     box-shadow:0 8px 20px black;
 }
 label{
+    font-size: 18px;
     font-weight: bold;
     margin-left: 30px;
 }
 .input{
     width: 400px;
     margin-top: 10px;
-    height: 30px;
+    height: 50px;
     border-radius: 5px;
     margin-left: 30px;
     border: 0.5px solid #2d2d2d;
@@ -102,11 +129,13 @@ label{
 .btn{
     color: white;
     font-weight: bold;
-    width: 450px;
-    height: 40px;
-    border-radius: 12px;
+    width: 480px;
+    height: 50px;
+    border-radius: 8px;
     border: none;
     margin: 0px 35px;
+    margin-top: 160px;
+    margin-right: 15px;
     background: #e69800;
     cursor: pointer;
     transition: 0.3s ease;
@@ -118,6 +147,7 @@ label{
 }
 .container2 input[type="file"]::file-selector-button{
     padding: 8px 16px;
+    
     margin: 10px;
     text-align: center;
     height: 40px;
@@ -135,4 +165,10 @@ label{
 
 .imgg{
     margin-right: -40px;
+}
+
+
+.wrapper{
+    display: grid;
+    grid-template-columns: repeat(2 , 1fr);
 }
