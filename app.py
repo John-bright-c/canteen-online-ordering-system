@@ -138,7 +138,8 @@ def add_to_cart():
         "insert into cart(product_name,price,quantity,total) values(%s,%s, %s, %s)",(product_name,price,1,price)
     )
     db.commit()
-    return redirect("/cart")
+    return {"success": True, "message":"Added to cart!"}
+    #return redirect("/cart")
 
 
 

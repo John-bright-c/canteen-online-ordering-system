@@ -50,7 +50,8 @@
 
         <h3>{{ product.name }}</h3>
         <p>&#8377; {{ product.price }}</p>
-        <form action="/add_to_cart" method="post">
+
+        <form class="add-cart-form" action="/add_to_cart" method="POST">
 
             <input type="hidden" name="product_name" value= "{{ product.name }}">
             <input type="hidden" name="price" value=" {{ product.price }} ">
@@ -58,12 +59,44 @@
         </form>
     </div>
 {% endfor %}
-
+<div id="cart-message"></div>
 </div>
+
 <footer><p>Copyright © CanteenBite</p></footer>
 </body>
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
     AOS.init();
+  </script>
+  <script>
+    document.querySelectorAll(".add-cart-form").forEach(form => {
+        form.addEventListener("submit",function(event){
+            event.preventDefault();
+
+            fetch("/add_to_cart",{
+                method: "POST",
+                body: new FormData(form)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showMessage(data.message);
+                }
+            })
+            .catch(error => {
+                console.error("Error:",error);
+            });
+        });
+    });
+    function showMessage(message) {
+        const popup = document.getElementById("cart-message");
+
+        popup.innerText = "✔️" + message;
+        popup.classList.add("show");
+
+        setTimeout(() => {
+            popup.classList.remove("show");
+        }, 2000);
+    }
   </script>
 </html>

@@ -347,3 +347,21 @@ input[type="search"]:focus{
         padding: 10px;
     }
 }
+
+#cart-message{
+    position: fixed;
+    top: 30px;
+    right: 20px;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+}
+#cart-message.show {
+    background: #28a745;
+    opacity: 1;
+    visibility: visible;
+}
