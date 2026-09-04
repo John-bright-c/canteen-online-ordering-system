@@ -1,160 +1,187 @@
 <!DOCTYPE html>
-<html>
-     <head>
-        <title> Menu page </title>
-    </head>
-    <link rel="stylesheet" href="{{url_for('static',filename='home.css')}}">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CanteenBite</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
     <header>
-    <div class="logo">  
-    <img src="{{url_for('static', filename='images/CB logo.png')}}" class="hii"  alt="logo">
-    <a href="/"><p>CampusBite</p>
-    </a>
-    </div>
-    <nav class="nav">
-    <a href="/" class="home">Home</a>
-    <a href="/menu">Menu</a>
-    <a href="/orders">Orders</a>
-    </nav>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/CB logo.png') }}" class="hii" alt="logo">
+            <a href="/"><p>Canteen<span>Bite</span></p></a>
+        </div>
 
-    
-    <div class="account-menu">
-        <img src=" {{ url_for('static', filename='images/admin.jpg') }} " class="admin-icon">
+        <nav class="nav">
+            <a href="/" class="home">Home</a>
+            <a href="/menu">Menu</a>
+            <a href="/orders">Orders</a>
+        </nav>
 
-        <div class="dropdown">
-            <a href="/login">Customer</a>
-            <a href="/admin">Admin</a>
-        </div>    
-    </div>
+        <a href="/cart" class="cart-icon">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </a>
 
+        <div class="account-menu">
+            <img src="{{ url_for('static', filename='images/admin.jpg') }}" class="admin-icon" alt="profile">
+            <div class="dropdown">
+                <a href="/login">Customer</a>
+                <a href="/admin">Admin</a>
+            </div>
+        </div>
     </header>
 
-    <body>
-       
-    <div class="hero" data-aos="fade-in" data-aos-duration="3000" easing="ease-in">
-        <h1>Delicious Meals. <br> Zero 
-        <span>Waiting.</span>🔥<br></h1><br>
-        <p> Order your favorite food from the canteen <br> before you reach the counter.</p><br>
-         
-        <div class="models">
-            <a href="/menu">
-    <button class="btn">
-    <span class="description">
-      ORDER NOW →
-    </span>
-  </button>
-  </a>
-</div>
+    <div class="status-bar">
+        <span><i class="fa-solid fa-circle dot"></i> Central Canteen &middot; Open until 8:00 PM</span>
+        <span class="divider">&bull;</span>
+        <span class="counters">Counter 1 &amp; 2 Active</span>
+        <span class="divider">&bull;</span>
+        <span><i class="fa-regular fa-clock"></i> 8&ndash;12 Min Wait</span>
+    </div>
 
-        <div class="card1">
-            <div class="save_time">
-                <i class="fa-solid fa-clock"></i>
-                <h5>Save Time</h5>
-                <p>No more long queues</p>
+    <div class="hero" data-aos="fade-in" data-aos-duration="1200">
+        <div class="hero-copy">
+            <p class="eyebrow"><i class="fa-solid fa-bolt"></i> Express Campus Dispatch</p>
+            <h1>Hungry? <span>Let's fix that.</span> 🍔</h1>
+            <p class="lead">
+                Fresh food, lightning-quick ordering, zero waiting lines.
+                Beat the rush between classes with seamless canteen pickup
+                straight from your counter.
+            </p>
+
+            <div class="models">
+                <a href="/menu">
+                    <button class="btn">
+                        <span class="description">Explore Menu →</span>
+                    </button>
+                </a>
+                <a href="/orders">
+                    <button class="btn btn-secondary">
+                        <span class="description"><i class="fa-solid fa-ticket"></i> View Active Orders</span>
+                    </button>
+                </a>
             </div>
 
-             <div class="get_token">
-                <i class="fa-solid fa-ticket"></i>
-                <h5>Get Token</h5>
-                <p>Receive your Token instantly</p>
-            </div>
+            <div class="card1">
+                <div class="save_time">
+                    <i class="fa-solid fa-clock"></i>
+                    <h5>6.4 min</h5>
+                    <p>Avg Prep Clock</p>
+                </div>
 
-             <div class="easy_pickup">
-                <i class="fa-solid fa-bowl-food"></i>
-                <h5>Easy pick up</h5>
-                <p>Pick up and enjoy your meal</p>
-            </div>
+                <div class="get_token">
+                    <i class="fa-solid fa-ticket"></i>
+                    <h5>#1 Rated</h5>
+                    <p>Campus Canteen</p>
+                </div>
 
+                <div class="easy_pickup">
+                    <i class="fa-solid fa-bowl-food"></i>
+                    <h5>400+</h5>
+                    <p>Daily Orders</p>
+                </div>
+            </div>
         </div>
-    
-    
+
         <div class="imgg">
-        <img src="{{url_for('static', filename='images/home.png')}}" alt="hero">
+            <span class="ribbon"><i class="fa-solid fa-tag"></i>Special Meal: Top Rated</span>
+            <span class="rating"><i class="fa-solid fa-star"></i> 4.9</span>
+            <img src="{{ url_for('static', filename='images/home.png') }}" alt="Crispy Deluxe Smash Combo">
+
+            <div class="floating-card">
+                <div class="floating-card-icon"><i class="fa-solid fa-bolt"></i></div>
+                <div class="floating-card-text">
+                    <h6>Express Counter Pick</h6>
+                    <p>Ready in under 5 mins</p>
+                </div>
+            </div>
+
+            <div class="imgg-caption">
+                <p class="tag">Chef's Special Pick</p>
+                <h5>Crispy Deluxe Smash Burger</h5>
+                <span class="price">₹140</span>
+            </div>
         </div>
     </div>
 
-    <div class="container1"  data-aos="fade-up easing="ease-in""
-     data-aos-duration="3000">
-        <h2>How It Works</h2><br>
-    <div class="works">
-        <div class="menu">
+
+    <div class="container1" data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1200">
+        <h2>How It Works</h2>
+        <div class="works">
+            <div class="menu">
                 <i class="fa-solid fa-burger"></i>
                 <h5>1. Browse Menu</h5>
                 <p>Explore a variety of delicious food items.</p>
-        </div>
+            </div>
 
-        <div class="menu">
+            <div class="menu">
                 <i class="fa-solid fa-shopping-cart"></i>
                 <h5>2. Add to Cart</h5>
                 <p>Add your favorite items to the cart.</p>
-        </div>
+            </div>
 
-        <div class="menu">
+            <div class="menu">
                 <i class="fa-solid fa-clipboard-check"></i>
                 <h5>3. Confirm Order</h5>
                 <p>Review your order and place it.</p>
-        </div>
+            </div>
 
-        <div class="menu">
+            <div class="menu">
                 <i class="fa-solid fa-ticket"></i>
                 <h5>4. Get your Token</h5>
-                <p>Receive a unique token for your order</p>
-        </div>
-
-    </div>
-
-    </div>
-
-    <div class="container2"  data-aos="fade-up easing="ease-in""
-     data-aos-duration="3000">
-
-    <h2>WHY CHOOSE OUR SYSTEM?</h2><br>
-    <div class="choose">
-        <div class="easy">
-            <i class="fa-solid fa-stopwatch"></i>
-            <h3>Easy Ordering</h3>
-            <p>Order from your phone in just few taps.</p>
-        </div>
-
-        <div class="easy">
-            <i class="fa-solid fa-clock"></i>
-            <h3>Order Tracking</h3>
-            <p>Track your order status in real time</p>
-        </div>
-
-        <div class="easy">
-            <i class="fa-solid fa-ticket"></i>
-            <h3>Save Time</h3>
-            <p>Skip the line and order before you arrive</p>
-        </div>
-
-        <div class="easy">
-            <i class="fa-solid fa-bell"></i>
-            <h3>Token System</h3>
-            <p>Get a unique token after confirming your order</p>
+                <p>Receive a unique token for your order.</p>
+            </div>
         </div>
     </div>
 
+    <div class="container2" data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1200">
+        <h2>Why Choose Our System?</h2>
+        <div class="choose">
+            <div class="easy">
+                <i class="fa-solid fa-stopwatch"></i>
+                <h3>Easy Ordering</h3>
+                <p>Order from your phone in just a few taps.</p>
+            </div>
+
+            <div class="easy">
+                <i class="fa-solid fa-location-crosshairs"></i>
+                <h3>Order Tracking</h3>
+                <p>Track your order status in real time.</p>
+            </div>
+
+            <div class="easy">
+                <i class="fa-solid fa-ticket"></i>
+                <h3>Save Time</h3>
+                <p>Skip the line and order before you arrive.</p>
+            </div>
+
+            <div class="easy">
+                <i class="fa-solid fa-bell"></i>
+                <h3>Token System</h3>
+                <p>Get a unique token after confirming your order.</p>
+            </div>
+        </div>
     </div>
-   
-<div class="container3"  data-aos="fade-up"
-     data-aos-duration="3000" easing="ease-in">
-    <h2><span>Hungry?</span> Let's get your order started!</h2>
-    <p>Browse the menu and order your food in seconds.</p>
-    <a href="/menu">
-        <button>View Menu</button>
-    </a>
-</div>
 
+    <div class="container3" data-aos="fade-up" data-aos-duration="1200">
+        <h2><span>Hungry?</span> Let's get your order started!</h2>
+        <p>Browse the menu and order your food in seconds.</p>
+        <a href="/menu">
+            <button>View Menu</button>
+        </a>
+    </div>
 
-<footer><p>Copyright © CanteenBite</p></footer>
+    <footer><p>Copyright &copy; CanteenBite</p></footer>
 
-
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script>
-    AOS.init();
-  </script>
 </html>

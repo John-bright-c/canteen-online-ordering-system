@@ -1,104 +1,316 @@
-body{
-    height: auto;
-    min-height: 100vh;
-    margin:0;
+/* =========================================================
+   CanteenBite — My Orders page
+   Shares the same design tokens as the rest of the site
+   ========================================================= */
+
+:root {
+  --bg: #0e0e0e;
+  --surface: #1a1a1a;
+  --surface-2: #1f1f1f;
+  --border: #2b2b2b;
+  --orange: #ff6a1a;
+  --orange-dark: #e85d0d;
+  --orange-soft: rgba(255, 106, 26, 0.12);
+  --green: #22c55e;
+  --green-soft: rgba(34, 197, 94, 0.12);
+  --red: #ef4444;
+  --red-soft: rgba(239, 68, 68, 0.12);
+  --text: #f5f5f3;
+  --text-muted: #a3a3a3;
+  --text-dim: #6f6f6f;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* =========================================================
+   Header
+   ========================================================= */
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 16px 48px;
+  background: rgba(14, 14, 14, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  border-radius: var(--radius-sm);
+}
+
+.logo p {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+header nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--surface);
+  padding: 6px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+}
+
+header nav a {
+  padding: 9px 20px;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+header nav a:hover {
+  color: var(--text);
+}
+
+header nav a.menu {
+  background: var(--orange);
+  color: #fff;
+}
+
+/* =========================================================
+   Page heading
+   ========================================================= */
+
+h1 {
+  font-family: var(--font-serif);
+  text-align: center;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 56px 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+}
+
+h1::before,
+h1::after {
+  content: "";
+  width: 60px;
+  height: 2px;
+  background: var(--orange);
+}
+
+/* =========================================================
+   Orders table
+   ========================================================= */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px 90px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  height: 600px;
+  overflow-y: scroll;
+}
+
+.heading,
+.order-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.8fr 1.6fr 0.6fr 1fr 1.1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 24px;
+}
+
+.heading {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+}
+
+.order-row {
+  border-bottom: 1px solid var(--border);
+  font-size: 0.92rem;
+  color: var(--text);
+  transition: background 0.15s ease;
+}
+
+.order-row:last-child {
+  border-bottom: none;
+}
+
+.order-row:hover {
+  background: var(--surface-2);
+}
+
+.order-row div:nth-child(6) {
+  color: var(--orange);
+  font-weight: 700;
+}
+
+/* =========================================================
+   Status badge
+   ========================================================= */
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  width: fit-content;
+  background: var(--orange-soft);
+  color: var(--orange);
+}
+
+.status::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* Optional: add class="status status-<state>" in your Jinja template
+   for more accurate coloring, e.g.:
+   class="status status-{{ order.order_status|lower|replace(' ', '-') }}" */
+
+.status-ready,
+.status-completed,
+.status-delivered,
+.status-picked-up {
+  background: var(--green-soft);
+  color: var(--green);
+}
+
+.status-cancelled,
+.status-rejected {
+  background: var(--red-soft);
+  color: var(--red);
+}
+
+.status-preparing,
+.status-pending,
+.status-processing {
+  background: var(--orange-soft);
+  color: var(--orange);
+}
+
+/* =========================================================
+   Empty state
+   ========================================================= */
+
+.empty-orders {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 60px 24px;
+  font-size: 0.95rem;
+}
+
+/* =========================================================
+   Footer
+   ========================================================= */
+
+footer {
+  text-align: center;
+  padding: 26px;
+  border-top: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: 0.85rem;
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+@media (max-width: 1024px) {
+  .container {
+    overflow-x: auto;
+  }
+
+  .heading,
+  .order-row {
+    min-width: 780px;
+  }
+}
+
+@media (max-width: 640px) {
+  header {
+    flex-wrap: wrap;
+    gap: 14px;
+    padding: 14px 20px;
+  }
+
+  header nav {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+  }
+
+  h1 {
+    font-size: 1.9rem;
+  }
+
+  h1::before,
+  h1::after {
+    width: 30px;
+  }
+
+  .container {
+    margin: 0 20px 60px;
     padding: 0;
-    text-align: center;
-    background:linear-gradient(180deg,#ff7a00 50%,#2d2d2d 50%);
-}
+  }
 
-header{
-    background:#2d2d2d;
-    color:white;
-    display:flex;
-    height: 50px;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 50px;
-}
-
-.logo{
-    width: 80px;
-    height: 80px;
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-nav a{
-    text-align: center;
-    color:white;
-    text-decoration:none;
-    margin-left:80px;
-    font-weight:bold;
-}
-
-nav a:hover{
-    color:orange;
-}
-
-.cb{
-    color: white;
-    text-decoration: none;
-}
-.cb:hover{
-    color: orange;
-}
-
-footer{
-    size: 8px;
-    width:100%;
-    height: 50px;
-    background-color: #2d2d2d;
-    color: white;
-}
-
-h1{
-    color: white;
-    font-size: 50px;
-    text-align: left;
-    margin-left: 100px;
-}
-
-
-.container{
-    justify-content: space-between;
-    width:1000px;
-    height:400px;
-    margin:50px auto;
-    background:white;
-    border-radius:15px;
-    padding:40px;
-    text-align:center;overflow-y: scroll;
-    box-shadow:0 10px 20px rgba(0,0,0,.3);
-    font-size: 20px;
-}
-
-.container p{
-    text-align: left;
-}
-
-.heading,.order-row{
-    display: grid;
-    grid-template-columns: 1fr 1.5fr 1fr 2fr 1fr 1fr 1.5fr;
-    align-items: center;
-    text-align: center;
-    padding: 15px;
-}
-
-.heading{
-    font-weight: bold;
-    background: #f5f5f5;
-    border-radius: 10px;
-}
-.order-row{
-    border-bottom: 1px solid #ddd;
-}
-
-.order-row:last-child{
-    border-bottom: none;
-}
-.status{
-    color: green;
-    font-weight: bold;
+  .heading,
+  .order-row {
+    padding: 14px 18px;
+  }
 }
