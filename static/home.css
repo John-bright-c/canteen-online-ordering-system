@@ -868,6 +868,32 @@ footer {
   color: var(--text-dim);
   font-size: 0.85rem;
 }
+.footer{
+    font-weight: bold;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+}
+.footer .home{
+    color: var(--orange);
+}
+
+.quick{
+    display: grid;
+    grid-template-rows: 0.5fr 0.5fr 0.5fr;
+    text-align: left;
+}
+.quick a{
+    margin: 15px;
+}
+.contact{
+    display: grid;
+    grid-template-rows: 0.5fr 0.5fr 0.5fr;
+    text-align: left;
+}
+.contact a{
+    margin: 15px;
+}
 
 /* =========================================================
    Responsive

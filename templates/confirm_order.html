@@ -37,6 +37,7 @@
         <div class="token" data-aos="flip-left" data-aos-duration="3000">
             {{token}}
         </div>
+        <audio id="order-sound" src="{{ url_for('static', filename='sucess-sound.mp3') }}" preload="auto"></audio>
 
         <p class="status">
             Status :
@@ -75,36 +76,15 @@ Copyright © CanteenBite
 
 </body>
 <script>
-  // Plays a short two-note "success" chime (no audio file needed)
-  function playSuccessChime() {
-    try {
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      const notes = [880, 1318.5]; // A5 then E6 — quick ascending "ding-ding"
-
-      notes.forEach((freq, i) => {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-
-        osc.type = "sine";
-        osc.frequency.value = freq;
-
-        const start = ctx.currentTime + i * 0.14;
-        gain.gain.setValueAtTime(0, start);
-        gain.gain.linearRampToValueAtTime(0.25, start + 0.02);
-        gain.gain.exponentialRampToValueAtTime(0.001, start + 0.35);
-
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-
-        osc.start(start);
-        osc.stop(start + 0.4);
-      });
-    } catch (e) {
-      console.warn("Chime playback skipped:", e);
-    }
+  function playtoken(){
+    const audio = document.getElementById('order-sound');
+    audio.currentTime = 0;
+    audio.play().catch(err => {
+        console.warn('Autoplay blocked: ', err);
+    })
   }
 
-  window.addEventListener("DOMContentLoaded", playSuccessChime);
+  window.addEventListener('DOMContentLoaded', playtoken);
 </script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
