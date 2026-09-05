@@ -125,6 +125,7 @@ header {
   color: #fff;
 }
 
+
 .search-box {
   display: flex;
   align-items: center;
@@ -893,6 +894,10 @@ footer {
 }
 .contact a{
     margin: 15px;
+}
+
+.copy{
+  border-top: 1px solid var(--border);
 }
 
 /* =========================================================

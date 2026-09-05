@@ -292,6 +292,32 @@ h1::after {
   transform: translateY(-2px);
 }
 
+
+/*============================
+  red dot notification on nav bar
+  ============================ */
+
+.cart-link {
+    position: relative;
+}
+
+#cart-dot {
+    display: none;
+    position: absolute;
+    top: 4px;
+    right: -3px;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+}
+
+#cart-dot.show {
+    display: block;
+}
+
+
+
 /* =========================================================
    Cart toast message
    ========================================================= */
