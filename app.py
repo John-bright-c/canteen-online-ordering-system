@@ -278,11 +278,25 @@ def update_status():
 
 @app.route("/manage_orders")
 def manage_orders():
-    cursor.execute("""select date_format(order_date,'%d/%m/%Y') as order_date,token_no, group_concat(concat(quantity, ' ', product_name) separator ', ') as product_name, sum(quantity) as quantity, round(sum(total) * 1.05, 2) as total, max(order_status) as order_status from orders group by token_no,order_date order by order_date desc""")
-    orders=cursor.fetchall()
+    cursor.execute("""
+        select
+            date_format(order_date,'%d/%m/%Y') as order_date,
+            token_no,
+            group_concat(concat(quantity, ' ', product_name) separator ', ') as product_name,
+            sum(quantity) as quantity,
+            round(sum(total) * 1.05, 2) as total,
+            max(order_status) as order_status
+        from orders
+        group by token_no, order_date
+        order by max(order_date) desc
+        limit 20
+    """)
+    orders = cursor.fetchall()
+
     cursor.execute("select order_date from orders")
-    order_date=cursor.fetchall()
-    return render_template("manage_orders.html",orders=orders,order_date=order_date)
+    order_date = cursor.fetchall()
+
+    return render_template("manage_orders.html", orders=orders, order_date=order_date)
 
 @app.route("/edit_menu")
 def edit_menu():
@@ -354,45 +368,88 @@ def admin_add_product():
 
 @app.route("/admin_reports")
 def admin_reports():
-    cursor.execute("""select count(distinct token_no) as total_orders,round(sum(total)*1.05,2) as total,round(avg(total)*1.05,2) as avg_revenue,count(quantity) as item_sold from orders""")
-    order = cursor.fetchall()
 
-    cursor.execute("select count(distinct token_no) as total_orders from orders")
-    total_orders=cursor.fetchone()
-    ["total_orders"]
 
-    cursor.execute("select round(sum(total)*1.05,2) as total_revenue from orders")
-    total_revenue=cursor.fetchone()
-    ["total_revenue"]
+    cursor.execute("""
+        select count(distinct token_no) as total_orders
+        from orders
+    """)
+    total_orders = cursor.fetchone()
 
-    cursor.execute("select round(avg(total)*1.05,2) as avg_revenue from orders")
-    avg_revenue=cursor.fetchone()
-    ["avg_revenue"]
+    cursor.execute("""
+        select round(sum(total)*1.05,2) as total_revenue
+        from orders
+    """)
+    total_revenue = cursor.fetchone()
 
-    cursor.execute("select count(quantity) as items_sold from orders")
-    items_sold=cursor.fetchone()
-    ["items_sold"]
+    cursor.execute("""
+        select round(avg(total)*1.05,2) as avg_revenue
+        from orders
+    """)
+    avg_revenue = cursor.fetchone()
 
-    cursor.execute("""select date_format(order_date,'%d/%m/%Y') as order_date,sum(quantity) as total_orders,
-    round(sum(total)*1.05,2) as revenue, max(order_status) as status from orders group by order_date order by order_date desc""")
-    recent_orders=cursor.fetchall()
+    cursor.execute("""
+        select count(quantity) as items_sold
+        from orders
+    """)
+    items_sold = cursor.fetchone()
 
-    cursor.execute("""select order_status,count(distinct token_no) as count from orders group by order_status""")
-    status_data=cursor.fetchall()
+    cursor.execute("""
+        select
+            date_format(order_date,'%d/%m/%Y') as order_date,
+            sum(quantity) as total_orders,
+            round(sum(total)*1.05,2) as revenue,
+            max(order_status) as status
+        from orders
+        group by date_format(order_date,'%d/%m/%Y')
+        order by min(order_date) desc
+    """)
+    recent_orders = cursor.fetchall()
 
-    cursor.execute ("""select rank() over (order by sum(quantity) desc) as 'rank', product_name as item,sum(quantity) as qty,round(sum(total)*1.05,2) as revenue from orders group by product_name order by qty desc limit 6""")
-    top_sell=cursor.fetchall()
+    cursor.execute("""
+        select rank() over (order by sum(quantity) desc) as 'rank',
+               product_name as item,
+               sum(quantity) as qty,
+               round(sum(total)*1.05,2) as revenue
+        from orders
+        group by product_name
+        order by qty desc
+        limit 6
+    """)
+    top_sell = cursor.fetchall()
 
-    cursor.execute("""select order_status,count(*) 
-    as count from orders where order_status <> 
-    'Out of Stock' group by order_status""")
-    stats_data=cursor.fetchall()
+    cursor.execute("""
+        select order_status, count(distinct token_no) as count
+        from orders
+        where order_status <> 'Out of Stock'
+        group by order_status
+    """)
+    stats_data = cursor.fetchall()
 
-    return render_template("/admin_reports.html",stats_data=stats_data,top_sell=top_sell,recent_orders=recent_orders,total_orders=total_orders,total_revenue=total_revenue,avg_revenue=avg_revenue,items_sold=items_sold,status_data=status_data)
+    cursor.execute("""
+        select
+            date_format(order_date,'%d %b') as date,
+            round(sum(total)*1.05,2) as revenue
+        from orders
+        group by date_format(order_date,'%d %b')
+        order by min(order_date) desc
+        limit 7
+    """)
+    sales_trend = cursor.fetchall()
+    sales_trend.reverse() 
 
-@app.route("/reports")
-def reports():
-    return render_template("reports.html")
+    return render_template(
+        "/admin_reports.html",
+        stats_data=stats_data,
+        top_sell=top_sell,
+        recent_orders=recent_orders,
+        total_orders=total_orders,
+        total_revenue=total_revenue,
+        avg_revenue=avg_revenue,
+        items_sold=items_sold,
+        sales_trend=sales_trend,
+    )
+
 
 @app.route("/customers")
 def customers():
