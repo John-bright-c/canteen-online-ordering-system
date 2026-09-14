@@ -189,7 +189,7 @@ def checkout():
 
 @app.route("/confirm_order", methods=["POST"]) 
 def confirm_orders(): 
-    token = randint(100, 999) 
+    token = randint(100, 9999) 
     username = session["user"]
     register_no = session["register_no"]
     cursor.execute("SELECT * FROM cart") 
