@@ -61,7 +61,6 @@ def register():
 
 
 
-
 @app.route("/login", methods=["GET", "POST"])
 def login():
 
@@ -79,14 +78,14 @@ def login():
     )
 
     user = cursor.fetchone()
+    cursor.close()   # good practice — free the cursor
 
     if user and user[3] == password:
         session["user"] = full_name
-        session["register_no"]=user[1]
+        session["register_no"] = user[1]
         return redirect("/menu")
     else:
-        return "Invalid username or password"
-
+        return render_template("login.html", error="Invalid username or password")
 
 
 #@app.route('/menu/<category>')
