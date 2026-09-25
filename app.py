@@ -78,7 +78,7 @@ def login():
     )
 
     user = cursor.fetchone()
-    cursor.close()   # good practice — free the cursor
+    cursor.close()  
 
     if user and user[3] == password:
         session["user"] = full_name
@@ -233,7 +233,7 @@ def admin():
         if username == "johnny" and password == "bbjbg2258":
             return redirect("/admin_dashboard")
         else:
-            return "Invalid Username or Password"
+            return render_template("admin.html", error="Invalid username or password")
     return render_template("admin.html")
 
 

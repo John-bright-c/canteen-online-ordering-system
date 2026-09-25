@@ -12,6 +12,9 @@
 
 <div class="container">
 <h1>Admin Verify</h1>
+{% if error %}
+  <p style="color:red;border: solid 1px white; border-radius: 4px; padding: 4px;">{{ error }}</p>
+{% endif %}
 
 <form action="/admin" method="POST">
 <p>User Name</p>
