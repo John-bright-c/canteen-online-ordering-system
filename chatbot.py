@@ -21,7 +21,6 @@ import time
 
 from flask import Blueprint, current_app, jsonify, request, session
 
-# The AI library is optional. If it is not installed, the basic mode still works.
 try:
     import anthropic
 except ImportError:
@@ -240,7 +239,28 @@ def basic_answer(message, menu, popular, orders):
 
     # Greeting
     if words & {"hi", "hello", "hey", "hii", "hola"} and len(words) <= 4:
-        return "Hello! I can help with the menu, prices, recommendations, ordering, tokens and your order status."
+        return "👋Hello! I can help with the menu, prices, recommendations, ordering, tokens and your order status."
+
+    if words & {"bye","see you"}:
+        return "👋Ok Bye!"
+
+    if words & {"owner","built","build","developed"}:
+        return "Iam CanteenBite online food ordering system and queue management system. Developed by John Bright C"
+
+    if words & {"thanks","thank you","thank"}:
+        return "You're Always Welcome 🙌,\n Iam Here to help you at any time."
+
+    if words & {"ok","okay","okie","okk","ohk","okkk","fine"}:
+        return "Iam glad that you understood. Reach me at any time!"
+
+    if words & {"name","who are you","who"}:
+        return "Iam CanteenBite Simple Rule Based Chatbot." "\nTell Me How Can I Help You?"
+
+    if words & {"sure"}:
+        return "Thank you for visting us.\nHave a Nice day!."
+
+    if words & {"timings","close","open"}:
+        return "Canteen timings are 9:10 - 4:00"
 
     # Order status / my token  (uses only the logged-in student's orders)
     if needs_orders(text):
@@ -373,7 +393,7 @@ def clean_history(raw_history):
             continue
         cleaned.append({"role": role, "content": content.strip()[:1000]})
     if cleaned and cleaned[-1]["role"] == "user":
-        cleaned.pop()  # the new message will be the next 'user' turn
+        cleaned.pop() 
     return cleaned
 
 
