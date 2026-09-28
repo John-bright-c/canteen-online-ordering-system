@@ -88,6 +88,12 @@ def login():
         return render_template("login.html", error="Invalid username or password")
 
 
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect("/")
+
+
 #@app.route('/menu/<category>')
 #@app.route('/menu')
 #def menu(category="All"):
