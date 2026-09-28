@@ -7,6 +7,7 @@ from random import randint
 from decimal import Decimal
 from werkzeug.security import generate_password_hash,check_password_hash
 from datetime import datetime
+from chatbot import init_chatbot
 
 load_dotenv()
 app= Flask(__name__)
@@ -20,6 +21,8 @@ db= mysql.connector.connect(
 )
 
 cursor = db.cursor(dictionary=True,buffered=True)
+
+init_chatbot(app, db)
 
 
 @app.route("/")
